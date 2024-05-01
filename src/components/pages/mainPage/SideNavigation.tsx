@@ -1,5 +1,6 @@
 import styles from '../../../styles/components/SideNavigation.module.css';
 import FilterButton from '../../common/FilterButton';
+import ThemeMode from '../../common/ThemeMode';
 
 function SideNavigation() {
   return (
@@ -28,7 +29,7 @@ function SideNavigation() {
         <ul className={styles.roadmapList}>
           <li>
             <div>
-              <button className={styles.planned}>&nbsp;</button>
+              <span className={styles.planned}>&nbsp;</span>
               <p>Planned</p>
             </div>
 
@@ -37,7 +38,7 @@ function SideNavigation() {
 
           <li>
             <div>
-              <button className={styles.progress}>&nbsp;</button>
+              <span className={styles.progress}>&nbsp;</span>
               <p>In Progress</p>
             </div>
 
@@ -46,7 +47,7 @@ function SideNavigation() {
 
           <li>
             <div>
-              <button className={styles.released}>&nbsp;</button>
+              <span className={styles.released}>&nbsp;</span>
               <p>Released</p>
             </div>
 
@@ -54,6 +55,8 @@ function SideNavigation() {
           </li>
         </ul>
       </div>
+
+      <ThemeMode />
     </div>
   );
 }

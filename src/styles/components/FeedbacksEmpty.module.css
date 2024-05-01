@@ -1,0 +1,38 @@
+.container {
+  background-color: var(--color-grey-900);
+  color: var(--color-grey-300);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-md);
+  padding: 6rem 0;
+}
+
+.container > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.container h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.2rem;
+}
+
+.container p {
+  color: var(--color-grey-400);
+  font-weight: 300;
+  font-size: 1.8rem;
+  letter-spacing: 0.03rem;
+}
+
+.icon {
+  height: 18rem;
+  margin-bottom: 3.7rem;
+}

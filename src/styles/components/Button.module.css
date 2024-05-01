@@ -1,0 +1,21 @@
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  padding: 1rem 3.2rem;
+  border-radius: 0.7rem;
+  border: none;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: var(--color-violet-500);
+  color: #fff;
+}
+
+.primary:hover {
+  background-color: var(--color-violet-900);
+}

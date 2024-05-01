@@ -39,6 +39,8 @@
   --color-orange: #ff922b;
   --color-purple: #cc5de8;
   --color-cyan: #22b8cf;
+  --color-yellow: #fcc419;
+  --color-darkus: #373f68;
 
   --color-violet-0: #f3f0ff;
   --color-violet-100: #e5dbff;
@@ -65,9 +67,8 @@
 
   --border-radius-1: 1rem;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0px 0.6rem 3rem rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 0.4rem 2rem rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 1.4rem 3rem rgba(0, 0, 0, 0.2);
 
   --radial-gradient: radial-gradient(
     128.88% 128.88% at 103.9% -10.39%,
