@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { lazy } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+const MainPage = lazy(() => import('./pages/MainPage'));
+const RoadMapPage = lazy(() => import('./pages/RoadMapPage'));
+const FeedbackPage = lazy(() => import('./pages/FeedbackPage'));
+const FeedbackForm = lazy(() => import('./ui/FeedbackForm'));
+const FeedbackDetail = lazy(() => import('./ui/FeedbackDetail'));
+
+const router = createBrowserRouter([
+  {
+    element: <MainPage />,
+    path: '/',
+    // errorElement,
+  },
+
+  {
+    element: <RoadMapPage />,
+    path: 'road-map',
+  },
+
+  {
+    element: <FeedbackPage />,
+    path: 'feedback',
+    children: [
+      {
+        element: <FeedbackForm />,
+        path: '/feedback/form',
+      },
+
+      {
+        element: <FeedbackDetail />,
+        path: '/feedback/:id',
+      },
+    ],
+  },
+]);
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;

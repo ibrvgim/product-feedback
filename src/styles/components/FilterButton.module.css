@@ -1,0 +1,24 @@
+.button {
+  font-size: 1.4rem;
+  padding: 0.4rem 1.4rem;
+  border-radius: 1rem;
+  border: none;
+  font-weight: 500;
+  background-color: var(--color-blue-0);
+  color: var(--color-blue-900);
+  letter-spacing: 0.03rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-blue-100);
+}
+
+.active {
+  background-color: var(--color-blue-900);
+  color: #fff;
+}
+
+.active:hover {
+  background-color: var(--color-blue-900);
+}

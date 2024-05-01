@@ -1,68 +1,138 @@
+/* 
+-- Spacing System (px): 2/ 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128;
+-- Font sizes (px): 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98;
+*/
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  &,
+  &.light-mode {
+    --color-grey-0: #18212f;
+    --color-grey-50: #111827;
+    --color-grey-100: #1f2937;
+    --color-grey-200: #374151;
+    --color-grey-300: #4b5563;
+    --color-grey-400: #6b7280;
+    --color-grey-500: #9ca3af;
+    --color-grey-600: #d1d5db;
+    --color-grey-700: #e5e7eb;
+    --color-grey-800: #f3f4f6;
+    --color-grey-900: #f9fafb;
+  }
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  &.dark-mode {
+    --color-grey-0: #fff;
+    --color-grey-50: #f9fafb;
+    --color-grey-100: #f3f4f6;
+    --color-grey-200: #e5e7eb;
+    --color-grey-300: #d1d5db;
+    --color-grey-400: #9ca3af;
+    --color-grey-500: #6b7280;
+    --color-grey-600: #4b5563;
+    --color-grey-700: #374151;
+    --color-grey-800: #1f2937;
+    --color-grey-900: #111827;
+  }
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-red: #c92a2a;
+  --color-red-secondary: #fa5252;
+
+  --color-orange: #ff922b;
+  --color-purple: #cc5de8;
+  --color-cyan: #22b8cf;
+
+  --color-violet-0: #f3f0ff;
+  --color-violet-100: #e5dbff;
+  --color-violet-200: #d0bfff;
+  --color-violet-300: #b197fc;
+  --color-violet-400: #9775fa;
+  --color-violet-500: #845ef7;
+  --color-violet-600: #7950f2;
+  --color-violet-700: #7048e8;
+  --color-violet-800: #6741d9;
+  --color-violet-900: #5f3dc4;
+
+  --color-blue-0: #f2f4ff;
+  --color-blue-50: #e7f5ff;
+  --color-blue-100: #d0ebff;
+  --color-blue-200: #a5d8ff;
+  --color-blue-300: #74c0fc;
+  --color-blue-400: #4dabf7;
+  --color-blue-500: #339af0;
+  --color-blue-600: #228be6;
+  --color-blue-700: #1c7ed6;
+  --color-blue-800: #1971c2;
+  --color-blue-900: #1864ab;
+
+  --border-radius-1: 1rem;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0px 0.6rem 3rem rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.4);
+
+  --radial-gradient: radial-gradient(
+    128.88% 128.88% at 103.9% -10.39%,
+    #e84d70 0%,
+    #a337f6 53.09%,
+    #28a7ed 100%
+  );
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+::selection {
+  background-color: var(--color-violet-400);
+  color: var(--color-grey-900);
 }
-a:hover {
-  color: #535bf2;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  color: var(--color-grey-50);
+  background-color: var(--color-grey-800);
+
+  font-size: 1.6rem;
+  line-height: 1.5;
+
+  transition: color 0.3s, background-color 0.3s;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all 0.4s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+input:focus {
+  outline: solid var(--color-violet-500);
+}
+
+/* button:focus {
+  outline: dashed var(--color-violet-500);
+  outline-offset: 3px;
+} */
+
+a:link,
+a:active {
+  color: inherit;
+  text-decoration: none;
 }
