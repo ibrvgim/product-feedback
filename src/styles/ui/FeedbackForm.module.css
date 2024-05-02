@@ -1,0 +1,91 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.goBackContainer {
+  align-self: flex-start;
+  margin-bottom: 10rem;
+  margin-left: 18rem;
+}
+
+.formContainer {
+  width: 52%;
+  background-color: var(--color-grey-900);
+  padding: 6rem 4rem 1rem 4rem;
+  border-radius: 2rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.formIcon {
+  height: 10rem;
+  position: absolute;
+  top: -8%;
+  left: 4%;
+  z-index: 1000;
+}
+
+.formContainer h1 {
+  margin: 3rem 0 5rem 0;
+  color: var(--color-grey-300);
+}
+
+.formContainer form div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.formContainer form input,
+.formContainer form textarea {
+  border-radius: 0.7rem;
+  border: 1px solid var(--color-grey-600);
+  background-color: var(--color-grey-800);
+  padding: 0 2rem;
+}
+
+.formContainer form input {
+  height: 5rem;
+}
+
+.formContainer form textarea {
+  padding-top: 1rem;
+  resize: none;
+}
+
+.formContainer form label {
+  width: 100%;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+  color: var(--color-grey-300);
+}
+
+.formContainer form span {
+  float: right;
+  color: var(--color-red);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+}
+
+.formContainer form input::placeholder,
+.formContainer form textarea::placeholder {
+  color: var(--color-grey-400);
+}
+
+.formContainer .buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-top: 4.5rem;
+}
+
+.formContainer .invalidInput {
+  border: 1.5px solid var(--color-red);
+}

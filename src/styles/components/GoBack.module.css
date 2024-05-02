@@ -1,0 +1,29 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+
+  background-color: transparent;
+  border: none;
+  color: var(--color-grey-400);
+  font-weight: 600;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: var(--color-violet-800);
+}
+
+.button span {
+  line-height: 0;
+  font-size: 1.5rem;
+  color: var(--color-violet-900);
+  font-weight: 900;
+  transition: all 0.4s;
+}
+
+.button:hover span {
+  transform: translateX(-0.4rem);
+}

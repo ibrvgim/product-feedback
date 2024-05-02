@@ -1,9 +1,13 @@
 import styles from '../../styles/components/Button.module.css';
-import { Children } from '../../types/types';
 
-function Button({ children }: Children) {
+interface Props {
+  children: React.ReactNode;
+  style?: string;
+}
+
+function Button({ children, style = 'primary' }: Props) {
   return (
-    <button className={`${styles.button} ${styles.primary}`}>{children}</button>
+    <button className={`${styles.button} ${styles[style]}`}>{children}</button>
   );
 }
 
