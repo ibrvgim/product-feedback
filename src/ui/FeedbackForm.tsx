@@ -55,7 +55,7 @@ function FeedbackForm() {
                 name='details'
                 rows={5}
                 placeholder='Include any specific comments on what should be improved, added, etc.'
-              ></textarea>
+              />
             </div>
 
             <div className={styles.buttonsContainer}>

@@ -1,18 +1,12 @@
 import styles from '../../../styles/components/FeedbackItem.module.css';
 import FilterButton from '../../common/FilterButton';
-import { IoIosArrowUp } from 'react-icons/io';
 import { FaRegComments } from 'react-icons/fa6';
+import VoteButton from '../../common/VoteButton';
 
 function FeedbackItem() {
   return (
     <div className={styles.container}>
-      {/* ${styles.voted} */}
-      <button className={`${styles.voteContainer}`}>
-        <span>
-          <IoIosArrowUp />
-        </span>
-        <span>112</span>
-      </button>
+      <VoteButton />
 
       <div className={styles.interactionContainer}>
         <div className={styles.feedbackDescription}>

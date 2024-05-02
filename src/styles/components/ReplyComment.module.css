@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+  padding: 0 0 3.5rem 7rem;
+}
+
+.inputArea {
+  width: 100%;
+}
+
+.container textarea {
+  width: 100%;
+  resize: none;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--color-grey-600);
+  background-color: var(--color-grey-800);
+}
+
+.container label {
+  float: right;
+  font-size: 1.4rem;
+  color: var(--color-red);
+  margin-right: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.container textarea::placeholder {
+  font-size: 1.4rem;
+  color: var(--color-grey-400);
+  letter-spacing: 0.07rem;
+}
+
+.container .invalidInput {
+  border: 2px solid var(--color-red);
+}

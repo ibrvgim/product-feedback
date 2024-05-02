@@ -1,0 +1,21 @@
+.container h4 {
+  margin-bottom: 1rem;
+}
+
+.commentsContainer > div:not(:last-child) {
+  border-bottom: 1.5px solid var(--color-grey-500);
+}
+
+.commentsItem {
+  padding: 4rem 0;
+}
+
+.commentReplies {
+  border-left: 2px solid var(--color-grey-700);
+  padding-left: 4rem;
+  margin: 4rem 0 0 2.2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}

@@ -23,7 +23,7 @@ function FeedbacksHeader() {
       </div>
 
       <Button>
-        <FaPlus style={{ fontSize: '1.3rem' }} /> Add Feedback
+        <FaPlus style={{ fontSize: '1.2rem' }} /> Add Feedback
       </Button>
     </div>
   );

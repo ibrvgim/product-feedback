@@ -1,0 +1,50 @@
+.container h3 {
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 2.5rem;
+  color: var(--color-grey-300);
+}
+
+.container label {
+  float: right;
+  font-size: 1.4rem;
+  color: var(--color-red);
+  margin-right: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.container textarea {
+  width: 100%;
+  resize: none;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--color-grey-600);
+  background-color: var(--color-grey-800);
+}
+
+.container textarea::placeholder {
+  color: var(--color-grey-400);
+  letter-spacing: 0.07rem;
+}
+
+.container .invalidInput {
+  border: 2px solid var(--color-red);
+}
+
+.submitContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.submitContainer > p {
+  color: var(--color-grey-400);
+  letter-spacing: 0.15rem;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.submitContainer > p span {
+  font-weight: 400;
+}
