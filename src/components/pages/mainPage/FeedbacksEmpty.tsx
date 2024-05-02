@@ -17,7 +17,7 @@ function FeedbacksEmpty() {
         <p>Just share with us.</p>
       </div>
 
-      <Button>
+      <Button path='/feedback/form'>
         <RiStickyNoteAddFill style={{ fontSize: '2rem' }} />
       </Button>
     </div>

@@ -1,0 +1,101 @@
+.container {
+  display: inline-block;
+  position: relative;
+}
+
+.select {
+  padding: 0.5rem 1rem;
+  min-width: 13.5rem;
+  border-radius: 0.7rem;
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  cursor: pointer;
+}
+
+.select:hover {
+  color: var(--color-grey-600);
+}
+
+.select span {
+  line-height: 0;
+}
+
+.optionsContainer {
+  min-width: 26rem;
+  background-color: var(--color-grey-900);
+  border-radius: 1rem;
+  margin-top: 3rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-grey-700);
+  overflow: hidden;
+  position: absolute;
+
+  left: 1rem;
+}
+
+.optionsContainer li:not(:last-child) {
+  border-bottom: 1px solid var(--color-grey-600);
+}
+
+.option button {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: var(--color-grey-400);
+  padding: 1rem 2rem;
+  transition: all 0.2s;
+  letter-spacing: 0.05rem;
+}
+
+.option button:hover {
+  background-color: var(--color-blue-main);
+  color: var(--color-violet-500);
+}
+
+.chosenIcon {
+  line-height: 0;
+  color: var(--color-violet-900);
+}
+
+.option .active {
+  color: var(--color-violet-500);
+  font-weight: 500;
+}
+
+.option .active:hover {
+  background-color: var(--color-grey-900);
+}
+
+/* FEEDBACK FORM STYLE */
+
+.formStyle {
+  height: 5rem;
+  min-width: 100%;
+  font-weight: 400;
+  color: var(--color-grey-400);
+
+  border-radius: 0.7rem;
+  border: 1px solid var(--color-grey-600);
+  background-color: var(--color-grey-800);
+  padding: 0 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.formStyle:hover {
+  color: var(--color-grey-300);
+}
+
+.formOptionsContainer {
+  width: 100%;
+  left: 0;
+  margin-top: 1.1rem;
+}

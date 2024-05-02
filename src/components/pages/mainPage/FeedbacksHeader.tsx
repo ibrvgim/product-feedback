@@ -1,6 +1,7 @@
 import styles from '../../../styles/components/FeedbacksHeader.module.css';
 import Button from '../../common/Button';
 import { FaPlus } from 'react-icons/fa6';
+import Select from '../../common/Select';
 
 function FeedbacksHeader() {
   return (
@@ -15,14 +16,18 @@ function FeedbacksHeader() {
         <h3>8 Suggestions</h3>
         <div className={styles.sort}>
           <span>Sort by:</span>
-          <select>
-            <option>most</option>
-            <option>least</option>
-          </select>
+          <Select
+            options={[
+              'Most votes',
+              'Least votes',
+              'Most Comments',
+              'Least Comments',
+            ]}
+          />
         </div>
       </div>
 
-      <Button>
+      <Button path='/feedback/form'>
         <FaPlus style={{ fontSize: '1.2rem' }} /> Add Feedback
       </Button>
     </div>

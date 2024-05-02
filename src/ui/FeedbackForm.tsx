@@ -2,6 +2,7 @@ import styles from '../styles/ui/FeedbackForm.module.css';
 import Section from '../components/common/Section';
 import Button from '../components/common/Button';
 import GoBack from '../components/common/GoBack';
+import Select from '../components/common/Select';
 
 function FeedbackForm() {
   return (
@@ -37,11 +38,10 @@ function FeedbackForm() {
               <label htmlFor='category'>
                 Feedback Category <span>Fill the area</span>
               </label>
-              <input
-                // className={styles.invalidInput}
-                id='category'
-                type='text'
-                placeholder='Choose a category for your feedback'
+
+              <Select
+                formStyle={true}
+                options={['Feature', 'UI', 'UX', 'Enhancement', 'Bug']}
               />
             </div>
 

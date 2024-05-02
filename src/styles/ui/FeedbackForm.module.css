@@ -33,15 +33,16 @@
   color: var(--color-grey-300);
 }
 
-.formContainer form div {
+.formContainer form > div {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  gap: 1.2rem;
+  margin-bottom: 3.5rem;
 }
 
 .formContainer form input,
 .formContainer form textarea {
+  color: var(--color-grey-400);
   border-radius: 0.7rem;
   border: 1px solid var(--color-grey-600);
   background-color: var(--color-grey-800);
@@ -64,7 +65,7 @@
   color: var(--color-grey-300);
 }
 
-.formContainer form span {
+.formContainer form > span {
   float: right;
   color: var(--color-red);
   font-size: 1.4rem;

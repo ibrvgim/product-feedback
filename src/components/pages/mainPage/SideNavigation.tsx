@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import styles from '../../../styles/components/SideNavigation.module.css';
 import FilterButton from '../../common/FilterButton';
 import ThemeMode from '../../common/ThemeMode';
 
 function SideNavigation() {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -23,7 +26,12 @@ function SideNavigation() {
         <div className={styles.roadmapHeader}>
           <p>Roadmap</p>
 
-          <button className={styles.viewButton}>More</button>
+          <button
+            className={styles.viewButton}
+            onClick={() => navigate('/road-map')}
+          >
+            More
+          </button>
         </div>
 
         <ul className={styles.roadmapList}>
