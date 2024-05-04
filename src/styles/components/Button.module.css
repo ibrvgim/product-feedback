@@ -17,7 +17,19 @@
 }
 
 .primary:hover {
-  background-color: var(--color-violet-700);
+  background-color: var(--color-violet-900);
+}
+
+.outline {
+  background-color: transparent;
+  border: 2px solid var(--color-violet-600);
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+}
+
+.outline:hover {
+  border: 2px solid var(--color-violet-700);
+  color: var(--color-violet-600);
 }
 
 .secondary {

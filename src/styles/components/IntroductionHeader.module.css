@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-grey-200);
+
+  border-bottom: 3px solid var(--color-grey-600);
+  padding-bottom: 3rem;
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}

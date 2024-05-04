@@ -1,6 +1,6 @@
 import styles from '../../styles/components/Select.module.css';
 import { useState } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 interface Props {
   options: string[];
@@ -29,9 +29,7 @@ function Select({ options, formStyle = false }: Props) {
         onClick={handleSelect}
       >
         {value}
-        <span>
-          <IoIosArrowDown />
-        </span>
+        <span>{toggleSelect ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
       </button>
 
       {toggleSelect && (

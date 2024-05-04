@@ -65,7 +65,7 @@
   color: var(--color-grey-300);
 }
 
-.formContainer form > span {
+.formContainer form > div label span {
   float: right;
   color: var(--color-red);
   font-size: 1.4rem;
@@ -75,7 +75,8 @@
 
 .formContainer form input::placeholder,
 .formContainer form textarea::placeholder {
-  color: var(--color-grey-400);
+  color: var(--color-grey-500);
+  font-weight: 300;
 }
 
 .formContainer .buttonsContainer {

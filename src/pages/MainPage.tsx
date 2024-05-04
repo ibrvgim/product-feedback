@@ -5,7 +5,7 @@ import SideNavigation from '../components/pages/mainPage/SideNavigation';
 
 function MainPage() {
   return (
-    <Section>
+    <Section showMode={false}>
       <div className={styles.container}>
         <SideNavigation />
         <FeedbacksContainer />

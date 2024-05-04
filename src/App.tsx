@@ -1,6 +1,9 @@
 import { Suspense, lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import FullSpinnerPage from './pages/FullSpinnerPage';
+import { DarkModeProvider } from './context/DarkModeContext';
+import PageNotFound from './pages/PageNotFound';
+import IntroductionPage from './pages/IntroductionPage';
 
 const MainPage = lazy(() => import('./pages/MainPage'));
 const RoadMapPage = lazy(() => import('./pages/RoadMapPage'));
@@ -10,9 +13,14 @@ const FeedbackDetail = lazy(() => import('./ui/FeedbackDetail'));
 
 const router = createBrowserRouter([
   {
-    element: <MainPage />,
+    element: <IntroductionPage />,
     path: '/',
-    // errorElement,
+    errorElement: <PageNotFound />,
+  },
+
+  {
+    element: <MainPage />,
+    path: '/:id',
   },
 
   {
@@ -23,6 +31,7 @@ const router = createBrowserRouter([
   {
     element: <FeedbackPage />,
     path: 'feedback',
+
     children: [
       {
         element: <FeedbackForm />,
@@ -39,9 +48,10 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <Suspense fallback={<FullSpinnerPage />}>
-      <RouterProvider router={router} />
-      {/* <Toaster
+    <DarkModeProvider>
+      <Suspense fallback={<FullSpinnerPage />}>
+        <RouterProvider router={router} />
+        {/* <Toaster
         position='top-center'
         gutter={12}
         containerStyle={{ margin: '8px' }}
@@ -49,11 +59,11 @@ function App() {
           success: {
             duration: 4000,
           },
-
+          
           error: {
             duration: 5000,
           },
-
+          
           style: {
             fontSize: '16px',
             maxWidth: '500px',
@@ -63,7 +73,8 @@ function App() {
           },
         }}
       /> */}
-    </Suspense>
+      </Suspense>
+    </DarkModeProvider>
   );
 }
 

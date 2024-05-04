@@ -1,8 +1,18 @@
 import styles from '../../styles/components/Section.module.css';
-import { Children } from '../../types/types';
+import SmallDarkModeButton from './SmallDarkModeButton';
 
-function Section({ children }: Children) {
-  return <section className={styles.container}>{children}</section>;
+interface Props {
+  children: React.ReactNode;
+  showMode?: boolean;
+}
+
+function Section({ children, showMode = true }: Props) {
+  return (
+    <section>
+      {showMode && <SmallDarkModeButton />}
+      <div className={styles.container}>{children}</div>
+    </section>
+  );
 }
 
 export default Section;

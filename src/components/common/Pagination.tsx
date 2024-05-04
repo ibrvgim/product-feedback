@@ -4,14 +4,18 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 function Pagination() {
   return (
     <div className={styles.container}>
-      <button>
-        <IoIosArrowBack />
+      <button className={styles.previousButton}>
+        <IoIosArrowBack className={styles.icon} />
       </button>
 
-      <input type='text' value={1} />
+      <div className={styles.pagesContainer}>
+        <button className={styles.active}>1</button>
+        <button>2</button>
+        <button>3</button>
+      </div>
 
-      <button>
-        <IoIosArrowForward />
+      <button className={styles.nextButton}>
+        <IoIosArrowForward className={styles.icon} />
       </button>
     </div>
   );

@@ -1,0 +1,21 @@
+.theme {
+  border: none;
+  background-color: transparent;
+  line-height: 0;
+
+  position: absolute;
+  top: 4rem;
+  right: 4rem;
+
+  cursor: pointer;
+}
+
+.sun {
+  color: #f59f00;
+  font-size: 4cqb;
+}
+
+.moon {
+  color: var(--color-blue-700);
+  font-size: 3rem;
+}

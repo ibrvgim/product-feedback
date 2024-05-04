@@ -18,7 +18,7 @@
 }
 
 .select:hover {
-  color: var(--color-grey-600);
+  color: #d1d5db;
 }
 
 .select span {
@@ -63,12 +63,12 @@
 }
 
 .option .active {
-  color: var(--color-violet-500);
+  color: var(--color-violet-400);
   font-weight: 500;
 }
 
 .option .active:hover {
-  background-color: var(--color-grey-900);
+  background-color: var(--color-grey-700);
 }
 
 /* FEEDBACK FORM STYLE */
@@ -92,6 +92,10 @@
 
 .formStyle:hover {
   color: var(--color-grey-300);
+}
+
+.formStyle span {
+  color: var(--color-violet-600);
 }
 
 .formOptionsContainer {

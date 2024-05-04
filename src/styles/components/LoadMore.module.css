@@ -1,0 +1,19 @@
+.button {
+  height: 4rem;
+  width: 4rem;
+  line-height: 0;
+  align-self: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 3.8rem;
+  color: var(--color-violet-400);
+  transition: all 0.4s;
+}
+
+.button:hover .icon {
+  transform: translateY(0.7rem);
+}

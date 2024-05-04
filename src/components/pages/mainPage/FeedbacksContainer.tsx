@@ -17,6 +17,7 @@ function FeedbacksContainer() {
         <FeedbackItem />
         <FeedbackItem />
         <FeedbackItem />
+
         <Pagination />
       </div>
     </div>

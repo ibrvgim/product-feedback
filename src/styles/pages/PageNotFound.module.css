@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.image {
+  height: 35rem;
+}
+
+.container p {
+  color: var(--color-grey-200);
+  font-size: 3.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4rem;
+  font-weight: 900;
+  margin-top: 1rem;
+}

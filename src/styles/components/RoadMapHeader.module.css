@@ -4,27 +4,23 @@
   justify-content: space-between;
   background-color: var(--color-darkus);
   color: #fff;
-  padding: 1.7rem 1.4rem;
+  padding: 2rem 4rem;
   border-radius: var(--border-radius-1);
   box-shadow: var(--shadow-lg);
+  margin-top: 2.5rem;
 }
 
-.header > div {
+.header div {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
-.header h3 {
-  letter-spacing: 0.15rem;
+.header img {
+  height: 6rem;
 }
 
-.icon {
-  height: 5rem;
-  margin-left: 2rem;
-}
-
-.sort {
-  margin-left: 2rem;
-  font-weight: 400;
+.header h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
 }

@@ -19,6 +19,7 @@
     --color-grey-900: #f9fafb;
 
     --color-blue-main: #f2f4ff;
+    --color-blue-secondary: #1f2937;
   }
 
   &.dark-mode {
@@ -35,6 +36,7 @@
     --color-grey-900: #111827;
 
     --color-blue-main: #1f2937;
+    --color-blue-secondary: #f2f4ff;
   }
 
   --color-red: #c92a2a;
@@ -84,7 +86,7 @@
 
 ::selection {
   background-color: var(--color-violet-400);
-  color: var(--color-grey-900);
+  color: #fff;
 }
 
 *,
@@ -132,11 +134,6 @@ input:focus,
 textarea:focus {
   outline: solid var(--color-violet-500);
 }
-
-/* button:focus {
-  outline: dashed var(--color-violet-500);
-  outline-offset: 3px;
-} */
 
 a:link,
 a:active {

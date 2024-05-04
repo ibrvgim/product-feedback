@@ -1,0 +1,49 @@
+.container {
+  width: 35rem;
+  background-color: var(--color-grey-900);
+  border: 3px solid var(--color-violet-900);
+  padding: 2rem 4rem 5rem 4rem;
+  position: relative;
+  margin-top: 4rem;
+  border-radius: 0.5rem 3rem 0.5em 3rem;
+  transition: all 0.6s;
+}
+
+.container:hover {
+  transform: translateY(-1.5rem);
+}
+
+.step {
+  background-color: var(--color-violet-900);
+  color: #fff;
+  font-size: 5rem;
+  font-weight: 900;
+  border-radius: 50rem;
+  border: none;
+  line-height: 0;
+  height: 7rem;
+  width: 7rem;
+
+  position: absolute;
+  bottom: -3.5rem;
+  right: 8%;
+}
+
+.description {
+  margin-top: 3rem;
+  color: var(--color-grey-400);
+}
+
+.header {
+  background-color: var(--color-violet-900);
+  color: #fff;
+  padding: 0.5rem 3rem;
+  border-radius: 0.5rem 1rem 0.5rem 1rem;
+  font-size: 1.8rem;
+  letter-spacing: 0.15rem;
+  font-weight: 600;
+
+  position: absolute;
+  top: -1.8rem;
+  left: 8%;
+}
