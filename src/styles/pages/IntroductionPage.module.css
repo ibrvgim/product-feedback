@@ -1,7 +1,7 @@
 .section {
   width: 80%;
   margin: 0 auto;
-  padding: 8rem 0;
+  padding: 9rem 0;
 }
 
 .heading {
@@ -32,8 +32,39 @@
   margin-bottom: 4rem;
 }
 
+.searchCompany {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchCompany input {
+  min-width: 50%;
+  height: 4.05rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: var(--color-grey-300);
+  border: 1.5px solid var(--color-grey-400);
+  font-size: 1.4rem;
+  padding: 0 3.7rem;
+  position: relative;
+}
+
+.searchCompany input::placeholder {
+  color: var(--color-grey-400);
+  letter-spacing: 0.05rem;
+}
+
+.searchCompany span {
+  line-height: 0;
+  font-size: 1.9rem;
+  position: absolute;
+  margin-left: 1.2rem;
+  color: var(--color-grey-400);
+}
+
 .image {
-  width: 140%;
+  width: 55rem;
 }
 
 .stepsContainer {
@@ -60,4 +91,60 @@
 
 .stepsContainer span {
   color: var(--color-violet-700);
+}
+
+.howWorks {
+  text-align: center;
+  margin-top: 14rem;
+}
+
+.howWorks h1 {
+  font-size: 4rem;
+  color: var(--color-grey-200);
+  margin-bottom: 6rem;
+  letter-spacing: 0.3rem;
+  line-height: 1.7;
+}
+
+.howWorks .howWorksItem:not(:last-child) {
+  margin-bottom: 2.5rem;
+}
+
+.howWorksIList {
+  display: flex;
+  gap: 5rem;
+}
+
+.howWorksItem {
+  height: 30rem;
+  width: 50rem;
+  background-color: var(--color-blue-secondary);
+  border-radius: 2rem;
+  font-size: 1.7rem;
+  letter-spacing: 0.05rem;
+  line-height: 1.7;
+  border: 5px solid var(--color-violet-700);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 4rem;
+  color: var(--color-grey-600);
+  box-shadow: var(--shadow-lg);
+}
+
+.howWorksItem span {
+  font-size: 3.8rem;
+  color: var(--color-violet-500);
+}
+
+.howWorksItem a:link,
+.howWorksItem a:visited {
+  color: var(--color-violet-500);
+  transition: all 0.3s;
+}
+
+.howWorksItem a:hover,
+.howWorksItem a:active {
+  color: var(--color-violet-800);
 }
