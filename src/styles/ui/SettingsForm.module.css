@@ -1,0 +1,106 @@
+.container {
+  width: 70%;
+  min-height: 75%;
+  background-color: var(--color-grey-900);
+  color: var(--color-grey-100);
+  box-shadow: var(--shadow-lg);
+  border-radius: 2rem;
+  padding: 6rem 8rem;
+  border: 2px solid var(--color-violet-400);
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heading h1 {
+  font-size: 5rem;
+  color: var(--color-grey-300);
+  letter-spacing: 0.2rem;
+}
+
+.heading img {
+  height: 15rem;
+}
+
+.inputsBox {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  margin-top: 3rem;
+}
+
+.inputsBox > div {
+  flex: 1;
+}
+
+.input {
+  margin: 1rem 0 3rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.input span {
+  position: absolute;
+  margin-left: 1.7rem;
+  color: var(--color-grey-500);
+  line-height: 0;
+}
+
+.input .lockIcon {
+  font-size: 1.8rem;
+}
+
+.inputContainer input {
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-grey-500);
+  background-color: transparent;
+  padding: 0 4.5rem;
+  color: var(--color-grey-300);
+  font-size: 1.5rem;
+}
+
+.inputContainer input::placeholder {
+  font-size: 1.45rem;
+  letter-spacing: 0.15rem;
+  color: var(--color-grey-500);
+}
+
+.inputContainer label {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-grey-400);
+  letter-spacing: 0.2rem;
+  color: var(--color-grey-300);
+}
+
+.inputContainer label span {
+  text-transform: none;
+  float: right;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-red);
+  letter-spacing: 0.05rem;
+}
+
+.inputContainer .inputError {
+  border: 1.5px solid var(--color-red);
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  float: right;
+  margin-top: 2rem;
+}
+
+.input input[id='email'],
+.emailLabel {
+  opacity: 0.5;
+}

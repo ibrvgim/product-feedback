@@ -19,6 +19,10 @@
   gap: 1rem;
 }
 
+.buttonsContainer button {
+  box-shadow: var(--shadow-md);
+}
+
 .commentsContainer,
 .addComments,
 .feedbackContent {

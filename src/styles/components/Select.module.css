@@ -68,7 +68,8 @@
 }
 
 .option .active:hover {
-  background-color: var(--color-grey-700);
+  background-color: var(--color-grey-900);
+  color: var(--color-violet-500);
 }
 
 /* FEEDBACK FORM STYLE */

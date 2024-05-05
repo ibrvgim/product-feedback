@@ -20,6 +20,7 @@ function FeedbackDetail() {
             <Button style='edit'>
               <BiSolidEditAlt />
             </Button>
+
             <Button style='delete'>
               <IoTrash />
             </Button>

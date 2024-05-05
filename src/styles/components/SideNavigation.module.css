@@ -17,6 +17,23 @@
 .header {
   background: var(--radial-gradient);
   color: #fff;
+  position: relative;
+}
+
+.settingButton {
+  position: absolute;
+  top: 1.7rem;
+  right: 1.7rem;
+  line-height: 0;
+  background-color: transparent;
+  border: none;
+  font-size: 2.2rem;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.settingButton:hover {
+  color: #fff;
 }
 
 .header p {

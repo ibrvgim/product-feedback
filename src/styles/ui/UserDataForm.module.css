@@ -1,0 +1,102 @@
+.container {
+  width: 37%;
+  min-height: 65%;
+  background-color: var(--color-grey-900);
+  color: var(--color-grey-100);
+  box-shadow: var(--shadow-lg);
+  border-radius: 2rem;
+  padding: 6rem 8rem;
+  border: 2px solid var(--color-violet-400);
+  position: relative;
+}
+
+.userIcon {
+  height: 8rem;
+  position: absolute;
+  top: 10%;
+  right: 7%;
+}
+
+.headingContainer {
+  margin-bottom: 6rem;
+}
+
+.headingContainer h1 {
+  color: var(--color-grey-200);
+  margin-bottom: 0.5rem;
+}
+
+.headingContainer p {
+  color: var(--color-grey-500);
+}
+
+.container form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.container form div:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.container input {
+  height: 4rem;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  border: 1.5px solid var(--color-grey-500);
+  padding: 0 1.5rem;
+  font-size: 1.5rem;
+  color: var(--color-grey-300);
+}
+
+.container label {
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  color: var(--color-grey-400);
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+}
+
+.container form label span {
+  float: right;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--color-red);
+  letter-spacing: 0.1rem;
+  text-transform: none;
+}
+
+.container input::placeholder {
+  color: var(--color-grey-400);
+  font-size: 1.5rem;
+}
+
+.buttonContainer {
+  float: right;
+  margin-top: 2rem;
+}
+
+.nicknameContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.nicknameContainer input {
+  width: 100%;
+  padding: 0 1.5rem 0 5rem;
+}
+
+.nicknameContainer span {
+  line-height: 0;
+  color: var(--color-grey-400);
+  position: absolute;
+  margin-left: 1.5rem;
+  border-right: 2px solid var(--color-grey-500);
+  padding-right: 1rem;
+}
+
+.container .inputsError {
+  border: 1.5px solid var(--color-red);
+}

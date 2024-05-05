@@ -1,4 +1,6 @@
 import styles from '../../styles/components/Section.module.css';
+// import UserDataForm from '../../ui/UserDataForm';
+// import ModalWindow from './ModalWindow';
 import SmallDarkModeButton from './SmallDarkModeButton';
 
 interface Props {
@@ -8,10 +10,16 @@ interface Props {
 
 function Section({ children, showMode = true }: Props) {
   return (
-    <section>
-      {showMode && <SmallDarkModeButton />}
-      <div className={styles.container}>{children}</div>
-    </section>
+    <>
+      <section>
+        {showMode && <SmallDarkModeButton />}
+        <div className={styles.container}>{children}</div>
+      </section>
+
+      {/* <ModalWindow closeOption={false}>
+        <UserDataForm />
+      </ModalWindow> */}
+    </>
   );
 }
 

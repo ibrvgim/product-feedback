@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import styles from '../../../styles/components/SideNavigation.module.css';
+import { useNavigate } from 'react-router-dom';
 import FilterButton from '../../common/FilterButton';
 import ThemeMode from '../../common/ThemeMode';
+import { IoSettingsOutline } from 'react-icons/io5';
 
 function SideNavigation() {
   const navigate = useNavigate();
@@ -9,6 +10,9 @@ function SideNavigation() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
+        <button className={styles.settingButton}>
+          <IoSettingsOutline />
+        </button>
         <h2>Company Name</h2>
         <p>Feedback Board</p>
       </div>
