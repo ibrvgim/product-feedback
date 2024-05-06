@@ -4,16 +4,28 @@ import { IoMdMail, IoMdLock } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import {
   closeAllWindows,
-  toggleRegisterWindow,
+  openRegisterWindow,
 } from '../slices/modalWindowSlice';
+import { useForm } from 'react-hook-form';
+import { CompanyFormData } from '../types/types';
+import useSigninCompany from '../hooks/company/useSigninCompany.ts';
+import MiniSpinner from '../components/common/MiniSpinner';
 
 function LoginForm() {
+  const { isLogining, loginCompany } = useSigninCompany();
+  const { register, handleSubmit, formState } = useForm();
+  const { errors } = formState;
   const dispatch = useDispatch();
 
   function handleRegister(e: React.FormEvent) {
     e.preventDefault();
     dispatch(closeAllWindows());
-    dispatch(toggleRegisterWindow());
+    dispatch(openRegisterWindow());
+  }
+
+  function handleOnSubmit(data: CompanyFormData) {
+    const { email, password } = data;
+    if (email && password) loginCompany({ email, password });
   }
 
   return (
@@ -24,12 +36,15 @@ function LoginForm() {
         <img src='/icons/login.svg' alt='welcome image' draggable={false} />
       </div>
 
-      <form>
+      <form onSubmit={handleSubmit(handleOnSubmit)}>
         <div className={styles.inputsBox}>
           <div>
             <div className={styles.inputContainer}>
               <label htmlFor='email'>
-                E-mail {false && <span>Fill in the area</span>}
+                E-mail
+                {errors.email?.message && (
+                  <span>{errors.email?.message.toString()}</span>
+                )}
               </label>
 
               <div className={styles.input}>
@@ -37,9 +52,16 @@ function LoginForm() {
                   <IoMdMail />
                 </span>
                 <input
+                  className={errors.email?.message ? styles.inputError : ''}
                   id='email'
                   type='email'
                   placeholder='ex. mindhub@company.com'
+                  {...register('email', {
+                    required: 'Fill in the field',
+                    validate: (value) =>
+                      /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value) ||
+                      'Invalid e-mail address',
+                  })}
                 />
               </div>
             </div>
@@ -47,7 +69,10 @@ function LoginForm() {
 
           <div className={styles.inputContainer}>
             <label htmlFor='password'>
-              Password {false && <span>Fill in the area</span>}
+              Password
+              {errors.password?.message && (
+                <span>{errors.password?.message.toString()}</span>
+              )}
             </label>
 
             <div className={styles.input}>
@@ -55,9 +80,17 @@ function LoginForm() {
                 <IoMdLock />
               </span>
               <input
+                className={errors.password?.message ? styles.inputError : ''}
                 id='password'
                 type='password'
                 placeholder='Minimum 8 characters'
+                {...register('password', {
+                  required: 'Fill in the field',
+                  minLength: {
+                    value: 8,
+                    message: 'Minimum 8 characters',
+                  },
+                })}
               />
             </div>
           </div>
@@ -70,8 +103,15 @@ function LoginForm() {
           </div>
 
           <div className={styles.buttonsContainer}>
-            <Button style='outline'>Cancel</Button>
-            <Button>Continue</Button>
+            <Button
+              style='outline'
+              handleClick={() => dispatch(closeAllWindows())}
+            >
+              Cancel
+            </Button>
+            <Button disabled={isLogining}>
+              {isLogining ? <MiniSpinner /> : 'Continue'}
+            </Button>
           </div>
         </div>
       </form>

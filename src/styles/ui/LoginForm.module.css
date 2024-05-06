@@ -84,7 +84,7 @@
 }
 
 .inputContainer .inputError {
-  border: 1.5px solid var(--color-red);
+  border: 1.6px solid var(--color-red);
 }
 
 .finalContainer {

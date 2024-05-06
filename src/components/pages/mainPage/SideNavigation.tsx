@@ -1,5 +1,5 @@
 import styles from '../../../styles/components/SideNavigation.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import FilterButton from '../../common/FilterButton';
 import ThemeMode from '../../common/ThemeMode';
 import { IoSettingsOutline } from 'react-icons/io5';
@@ -8,35 +8,53 @@ import { useDispatch, useSelector } from 'react-redux';
 import ModalWindow from '../../common/ModalWindow';
 import ConfirmationWindow from '../../common/ConfirmationWindow';
 import {
-  toggleLogoutWindow,
-  toggleSettingWindow,
+  openLogoutWindow,
+  openSettingWindow,
 } from '../../../slices/modalWindowSlice';
+import FullSpinnerPage from '../../../pages/FullSpinnerPage';
+import useGetFeedbacks from '../../../hooks/feedbacks/useGetFeedbacks';
+import useGetCompany from '../../../hooks/company/useGetCompany';
 
 function SideNavigation() {
   const navigate = useNavigate();
   const { logoutWindow } = useSelector((state) => state.modalWindow);
   const dispatch = useDispatch();
 
+  // GET FEEDBACKS
+  const { isPending, getFeedbacks } = useGetFeedbacks();
+  const { id } = useParams();
+  const getID = id?.slice(-36);
+  const filter = getFeedbacks?.find((item) => item.company_id === getID);
+
+  // GET COMPANY
+  const { isAuthenticated, companyData } = useGetCompany();
+  const matchAccount = getID === companyData?.id;
+
+  function handleExitButton() {
+    dispatch(openLogoutWindow());
+  }
+
+  if (isPending) return <FullSpinnerPage />;
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.iconsContainer}>
-            <button
-              className={styles.settingItem}
-              onClick={() => dispatch(toggleSettingWindow())}
-            >
-              <IoSettingsOutline />
-            </button>
+          {isAuthenticated && matchAccount && (
+            <div className={styles.iconsContainer}>
+              <button
+                className={styles.settingItem}
+                onClick={() => dispatch(openSettingWindow())}
+              >
+                <IoSettingsOutline />
+              </button>
 
-            <button
-              className={styles.exitIcon}
-              onClick={() => dispatch(toggleLogoutWindow())}
-            >
-              <IoMdLogOut />
-            </button>
-          </div>
-          <h2>Company Name</h2>
+              <button className={styles.exitIcon} onClick={handleExitButton}>
+                <IoMdLogOut />
+              </button>
+            </div>
+          )}
+          <h2>{filter.company_name}</h2>
           <p>Feedback Board</p>
         </div>
 

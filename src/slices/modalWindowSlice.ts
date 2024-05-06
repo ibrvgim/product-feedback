@@ -12,57 +12,42 @@ const modalWindowSlice = createSlice({
   name: 'modalWindows',
   initialState,
   reducers: {
-    toggleLoginWindow: (state) => {
-      state.loginForm = !state.loginForm;
+    openLoginWindow: (state) => {
+      state.loginForm = true;
     },
 
-    closeLoginWindow: (state) => {
-      state.loginForm = false;
-    },
-
-    toggleRegisterWindow: (state) => {
-      state.registerForm = !state.registerForm;
-    },
-
-    closeRegisterWindow: (state) => {
-      state.registerForm = false;
+    openRegisterWindow: (state) => {
+      state.registerForm = true;
     },
 
     openUserWindow: (state) => {
       state.userForm = true;
     },
 
-    closeUserWindow: (state) => {
-      state.userForm = false;
+    openSettingWindow: (state) => {
+      state.settingForm = true;
     },
 
-    toggleSettingWindow: (state) => {
-      state.settingForm = !state.settingForm;
-    },
-
-    toggleLogoutWindow: (state) => {
-      state.logoutWindow = !state.logoutWindow;
+    openLogoutWindow: (state) => {
+      state.logoutWindow = true;
     },
 
     closeAllWindows: (state) => {
-      state.loginForm = false;
-      state.registerForm = false;
-      state.userForm = false;
-      state.settingForm = false;
-      state.logoutWindow = false;
+      if (state.loginForm) state.loginForm = false;
+      if (state.registerForm) state.registerForm = false;
+      if (state.userForm) state.userForm = false;
+      if (state.settingForm) state.settingForm = false;
+      if (state.logoutWindow) state.logoutWindow = false;
     },
   },
 });
 
 export const {
-  toggleLoginWindow,
-  closeLoginWindow,
-  toggleRegisterWindow,
-  closeRegisterWindow,
+  openLoginWindow,
+  openRegisterWindow,
   openUserWindow,
-  closeUserWindow,
-  toggleSettingWindow,
-  toggleLogoutWindow,
+  openSettingWindow,
+  openLogoutWindow,
   closeAllWindows,
 } = modalWindowSlice.actions;
 export default modalWindowSlice.reducer;

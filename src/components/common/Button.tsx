@@ -7,6 +7,7 @@ interface Props {
   path?: string;
   replace?: boolean;
   handleClick?: () => void;
+  disabled?: boolean;
 }
 
 function Button({
@@ -15,6 +16,7 @@ function Button({
   path,
   replace = false,
   handleClick,
+  disabled = false,
 }: Props) {
   const navigate = useNavigate();
 
@@ -25,6 +27,7 @@ function Button({
         if (path) navigate(path, { replace: replace });
       }}
       className={`${styles.button} ${styles[style]}`}
+      disabled={disabled}
     >
       {children}
     </button>

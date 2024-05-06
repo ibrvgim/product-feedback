@@ -11,11 +11,19 @@ import ModalWindow from '../components/common/ModalWindow';
 import RegistrationForm from '../ui/RegistrationForm';
 import LoginForm from '../ui/LoginForm';
 import { ModalWindow as ModalWindowType } from '../types/types';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function IntroductionPage() {
   const { loginForm, registerForm } = useSelector(
     (state): ModalWindowType => state?.modalWindow
   );
+  const [input, setInput] = useState('');
+  const navigate = useNavigate();
+
+  function handleSearch() {
+    if (input) navigate(`/${input}`);
+  }
 
   return (
     <>
@@ -43,8 +51,10 @@ function IntroductionPage() {
                 <input
                   type='text'
                   placeholder='Search for a company by unique ID'
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
                 />
-                <Button>Search</Button>
+                <Button handleClick={handleSearch}>Search</Button>
               </div>
             </div>
 

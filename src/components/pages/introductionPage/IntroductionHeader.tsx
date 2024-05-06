@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import {
-  toggleLoginWindow,
-  toggleRegisterWindow,
+  openLoginWindow,
+  openRegisterWindow,
 } from '../../../slices/modalWindowSlice';
 import styles from '../../../styles/components/IntroductionHeader.module.css';
 import Button from '../../common/Button';
@@ -12,11 +12,11 @@ function IntroductionHeader() {
   const dispatch = useDispatch();
 
   function handleLoginWindow() {
-    dispatch(toggleLoginWindow());
+    dispatch(openLoginWindow());
   }
 
   function handleRegisterWindow() {
-    dispatch(toggleRegisterWindow());
+    dispatch(openRegisterWindow());
   }
 
   return (

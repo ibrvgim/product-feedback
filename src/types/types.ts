@@ -23,3 +23,26 @@ export interface ModalWindow {
   toggleLogoutWindow?: () => void;
   closeAllWindows?: () => void;
 }
+
+export interface CompanyData {
+  email: string;
+  password: string;
+}
+
+export interface CreateCompany {
+  email: string;
+  password: string;
+  companyName: string;
+}
+
+export interface CompanyFormData {
+  companyName?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+}
+
+export interface InitialFeedbackData {
+  companyId: string;
+  companyName: string;
+}

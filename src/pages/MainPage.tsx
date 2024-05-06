@@ -5,9 +5,21 @@ import SideNavigation from '../components/pages/mainPage/SideNavigation';
 import { useSelector } from 'react-redux';
 import ModalWindow from '../components/common/ModalWindow';
 import SettingsForm from '../ui/SettingsForm';
+import useGetFeedbacks from '../hooks/feedbacks/useGetFeedbacks';
+import FullSpinnerPage from './FullSpinnerPage';
+import { useParams } from 'react-router-dom';
+import PageNotFound from './PageNotFound';
 
 function MainPage() {
   const { settingForm } = useSelector((state) => state.modalWindow);
+  const { isPending, getFeedbacks } = useGetFeedbacks();
+  const { id } = useParams();
+  const getID = id?.slice(-36);
+
+  const filter = getFeedbacks?.find((item) => item.company_id === getID);
+
+  if (isPending) return <FullSpinnerPage />;
+  if (!filter) return <PageNotFound />;
 
   return (
     <>
