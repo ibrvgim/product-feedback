@@ -6,19 +6,24 @@ interface Props {
   style?: string;
   path?: string;
   replace?: boolean;
+  handleClick?: () => void;
 }
 
 function Button({
   children,
   style = 'primary',
-  path = '',
+  path,
   replace = false,
+  handleClick,
 }: Props) {
   const navigate = useNavigate();
 
   return (
     <button
-      onClick={() => navigate(path, { replace: replace })}
+      onClick={() => {
+        handleClick?.();
+        if (path) navigate(path, { replace: replace });
+      }}
       className={`${styles.button} ${styles[style]}`}
     >
       {children}

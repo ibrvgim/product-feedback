@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux';
 import styles from '../../styles/components/Section.module.css';
-// import UserDataForm from '../../ui/UserDataForm';
-// import ModalWindow from './ModalWindow';
+import UserDataForm from '../../ui/UserDataForm';
+import ModalWindow from './ModalWindow';
 import SmallDarkModeButton from './SmallDarkModeButton';
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
 }
 
 function Section({ children, showMode = true }: Props) {
+  const { userForm } = useSelector((state) => state.modalWindow);
+
   return (
     <>
       <section>
@@ -16,9 +19,11 @@ function Section({ children, showMode = true }: Props) {
         <div className={styles.container}>{children}</div>
       </section>
 
-      {/* <ModalWindow closeOption={false}>
-        <UserDataForm />
-      </ModalWindow> */}
+      {userForm && (
+        <ModalWindow closeOption={false}>
+          <UserDataForm />
+        </ModalWindow>
+      )}
     </>
   );
 }

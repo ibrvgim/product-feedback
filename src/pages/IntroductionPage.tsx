@@ -6,11 +6,17 @@ import Footer from '../components/common/Footer';
 import { IoMdSearch } from 'react-icons/io';
 import { FaLink } from 'react-icons/fa';
 import { FaUsers, FaPenFancy } from 'react-icons/fa6';
-// import ModalWindow from '../components/common/ModalWindow';
-// import RegistrationForm from '../ui/RegistrationForm';
-// import LoginForm from '../ui/LoginForm';
+import { useSelector } from 'react-redux';
+import ModalWindow from '../components/common/ModalWindow';
+import RegistrationForm from '../ui/RegistrationForm';
+import LoginForm from '../ui/LoginForm';
+import { ModalWindow as ModalWindowType } from '../types/types';
 
 function IntroductionPage() {
+  const { loginForm, registerForm } = useSelector(
+    (state): ModalWindowType => state?.modalWindow
+  );
+
   return (
     <>
       <section className={styles.section}>
@@ -115,10 +121,13 @@ function IntroductionPage() {
         </div>
       </section>
 
-      {/* <RegistrationForm /> */}
-      {/* <ModalWindow>
-        <LoginForm />
-      </ModalWindow> */}
+      {(loginForm || registerForm) && (
+        <ModalWindow>
+          {registerForm && <RegistrationForm />}
+
+          {loginForm && <LoginForm />}
+        </ModalWindow>
+      )}
     </>
   );
 }

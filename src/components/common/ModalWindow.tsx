@@ -1,6 +1,8 @@
 import styles from '../../styles/components/ModalWindow.module.css';
 import { useEffect } from 'react';
 import { IoIosClose } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { closeAllWindows } from '../../slices/modalWindowSlice';
 
 interface Props {
   children: React.ReactNode;
@@ -16,10 +18,15 @@ function ModalWindow({ children, closeOption = true }: Props) {
     };
   }, []);
 
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.container}>
       {closeOption && (
-        <button className={styles.close}>
+        <button
+          className={styles.close}
+          onClick={() => dispatch(closeAllWindows())}
+        >
           <IoIosClose />
         </button>
       )}

@@ -2,8 +2,16 @@ import styles from '../styles/ui/SettingsForm.module.css';
 import Button from '../components/common/Button';
 import { HiBuildingLibrary } from 'react-icons/hi2';
 import { IoMdMail, IoMdLock } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { toggleSettingWindow } from '../slices/modalWindowSlice';
 
 function SettingsForm() {
+  const dispatch = useDispatch();
+
+  function handleClose() {
+    dispatch(toggleSettingWindow());
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.heading}>
@@ -85,7 +93,9 @@ function SettingsForm() {
         </div>
 
         <div className={styles.buttonsContainer}>
-          <Button style='outline'>Cancel</Button>
+          <Button style='outline' handleClick={handleClose}>
+            Cancel
+          </Button>
           <Button>Save Changes</Button>
         </div>
       </form>

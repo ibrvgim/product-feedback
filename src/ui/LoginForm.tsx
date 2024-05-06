@@ -1,8 +1,21 @@
 import styles from '../styles/ui/LoginForm.module.css';
 import Button from '../components/common/Button';
 import { IoMdMail, IoMdLock } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import {
+  closeAllWindows,
+  toggleRegisterWindow,
+} from '../slices/modalWindowSlice';
 
 function LoginForm() {
+  const dispatch = useDispatch();
+
+  function handleRegister(e: React.FormEvent) {
+    e.preventDefault();
+    dispatch(closeAllWindows());
+    dispatch(toggleRegisterWindow());
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.heading}>
@@ -53,7 +66,7 @@ function LoginForm() {
         <div className={styles.finalContainer}>
           <div className={styles.noAccount}>
             <p>Do not have an account yet?</p>
-            <button>Register Company</button>
+            <button onClick={handleRegister}>Register Company</button>
           </div>
 
           <div className={styles.buttonsContainer}>

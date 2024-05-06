@@ -2,8 +2,18 @@ import styles from '../styles/ui/RegistrationForm.module.css';
 import Button from '../components/common/Button';
 import { HiBuildingLibrary } from 'react-icons/hi2';
 import { IoMdMail, IoMdLock } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { closeAllWindows, toggleLoginWindow } from '../slices/modalWindowSlice';
 
 function RegistrationForm() {
+  const dispatch = useDispatch();
+
+  function handleMyCompany(e: React.FormEvent) {
+    e.preventDefault();
+    dispatch(closeAllWindows());
+    dispatch(toggleLoginWindow());
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.heading}>
@@ -86,7 +96,7 @@ function RegistrationForm() {
         <div className={styles.finalContainer}>
           <div className={styles.accountExist}>
             <p>Already have an account?</p>
-            <button>My Company</button>
+            <button onClick={handleMyCompany}>My Company</button>
           </div>
 
           <div className={styles.buttonsContainer}>

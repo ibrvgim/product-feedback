@@ -25,7 +25,7 @@ const router = createBrowserRouter([
 
   {
     element: <RoadMapPage />,
-    path: 'road-map',
+    path: 'road-map/:id',
   },
 
   {
