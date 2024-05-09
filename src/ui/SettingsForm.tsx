@@ -73,7 +73,7 @@ function SettingsForm() {
                       message: 'Minimum 5 characters',
                     },
                     validate: (value) =>
-                      /[^.!@#$%^&*()_+-=]/g.test(value) ||
+                      /^[^\d@#!$%^*()_=-]*$/g.test(value) ||
                       'Symbols are not allowed',
                   })}
                   defaultValue={companyName}

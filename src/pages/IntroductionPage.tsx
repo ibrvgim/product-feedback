@@ -13,6 +13,9 @@ import LoginForm from '../ui/LoginForm';
 import { ModalWindow as ModalWindowType } from '../types/types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FullSpinnerPage from './FullSpinnerPage';
+import useSigninCompany from '../hooks/company/useSigninCompany';
+import useGetCompany from '../hooks/company/useGetCompany';
 
 function IntroductionPage() {
   const { loginForm, registerForm } = useSelector(
@@ -20,10 +23,14 @@ function IntroductionPage() {
   );
   const [input, setInput] = useState('');
   const navigate = useNavigate();
+  const { isLogining } = useSigninCompany();
+  const { isPending } = useGetCompany();
 
   function handleSearch() {
     if (input) navigate(`/${input}`);
   }
+
+  if (isLogining) return <FullSpinnerPage />;
 
   return (
     <>
@@ -135,7 +142,7 @@ function IntroductionPage() {
         <ModalWindow>
           {registerForm && <RegistrationForm />}
 
-          {loginForm && <LoginForm />}
+          {loginForm && !isPending && <LoginForm />}
         </ModalWindow>
       )}
     </>

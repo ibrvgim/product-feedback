@@ -1,6 +1,11 @@
 .feedbacksContainer {
+  min-height: 115rem;
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.paginationContainer {
+  margin-top: auto;
 }

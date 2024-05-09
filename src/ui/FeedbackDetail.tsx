@@ -8,47 +8,149 @@ import { IoTrash } from 'react-icons/io5';
 import VoteButton from '../components/common/VoteButton';
 import CommentsBox from '../components/pages/feedbackPage/CommentsBox';
 import AddComment from '../components/pages/feedbackPage/AddComment';
+import { useParams, useSearchParams } from 'react-router-dom';
+import { getAllFeedbacks } from '../utilities/getAllFeedbacks';
+import useGetFeedbacks from '../hooks/feedbacks/useGetFeedbacks';
+import FullSpinnerPage from '../pages/FullSpinnerPage';
+import { formatString } from '../utilities/helpers';
+import useGetCompany from '../hooks/company/useGetCompany';
+import useDeleteFeedback from '../hooks/feedbacks/useDeleteFeedback';
+import MiniSpinner from '../components/common/MiniSpinner';
+import useCreateFeedback from '../hooks/feedbacks/useCreateFeedback';
+import useUpdateFeedback from '../hooks/feedbacks/useUpdateFeedback';
+
+interface Item {
+  id: string;
+  title: string;
+  category: string;
+  upvotes: string | number;
+  status: string;
+  description: string;
+  comments: [];
+}
 
 function FeedbackDetail() {
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get('company');
+  const { isPending, getFeedbacks } = useGetFeedbacks();
+  const { feedbackID } = useParams();
+  const { isAuthenticated, companyData } = useGetCompany();
+  const { isDeleting, deleteFeedback } = useDeleteFeedback();
+  const { isUpdating, updateFeedback } = useUpdateFeedback();
+  if (!id || !getFeedbacks) return;
+  const companyID = id?.slice(-36);
+  const allFeedbacks = getAllFeedbacks(id, getFeedbacks);
+
+  const getFeedbackItem = allFeedbacks?.find(
+    (item: Item) => String(item.id) === String(feedbackID)
+  );
+
+  if (!getFeedbackItem) return;
+
+  // status
+  const { title, category, upvotes, description, comments, status }: Item =
+    getFeedbackItem;
+
+  function handleDelete() {
+    const feedbackItem = allFeedbacks?.filter(
+      (item) => item?.id !== getFeedbackItem?.id
+    );
+    if (isAuthenticated && matchPage)
+      deleteFeedback({ companyID, feedbackItem });
+  }
+
+  const matchPage = companyData?.id === id;
+
+  function handleFeedbackStatus(status: string) {
+    const findIndex = allFeedbacks?.findIndex(
+      (item: { id: string | number }) =>
+        Number(item.id) === Number(getFeedbackItem?.id)
+    );
+
+    const newFeedbacks = allFeedbacks?.slice();
+    newFeedbacks?.splice(findIndex, 1, { ...getFeedbackItem, status: status });
+
+    updateFeedback({
+      companyID,
+      feedbackItem: [...newFeedbacks],
+    });
+  }
+
+  if (isPending) return <FullSpinnerPage />;
+
   return (
     <Section>
       <div className={styles.container}>
         <div className={styles.goBackContainer}>
           <GoBack />
+          {isAuthenticated && matchPage && (
+            <div className={styles.buttonsContainer}>
+              <Button style='edit'>
+                <BiSolidEditAlt />
+              </Button>
 
-          <div className={styles.buttonsContainer}>
-            <Button style='edit'>
-              <BiSolidEditAlt />
-            </Button>
-
-            <Button style='delete'>
-              <IoTrash />
-            </Button>
-          </div>
-        </div>
-
-        <div className={styles.feedbackContent}>
-          <div>
-            <FilterButton fixed='true'>Feature</FilterButton>
-            <p>Add a dark mode option</p>
-
-            <div className={styles.voteContainer}>
-              <VoteButton showNumber={false} />
+              <Button
+                style='delete'
+                handleClick={handleDelete}
+                disabled={isDeleting}
+              >
+                {isDeleting ? <MiniSpinner space={false} /> : <IoTrash />}
+              </Button>
             </div>
+          )}
+        </div>
+
+        <div className={styles.mainBox}>
+          <div className={styles.feedbackContent}>
+            <div>
+              <FilterButton fixed='true'>{formatString(category)}</FilterButton>
+              <p>{formatString(title)}</p>
+
+              <div className={styles.voteContainer}>
+                <VoteButton showNumber={false} votes={upvotes} />
+              </div>
+            </div>
+
+            <p>{formatString(description)}</p>
           </div>
 
-          <p>
-            It would help people with light sensitivities and who prefer dark
-            mode.
-          </p>
+          {isAuthenticated && matchPage && (
+            <div className={styles.categoryContainer}>
+              {['Suggestion', 'Planned', 'In - Progress', 'Released'].map(
+                (item) => (
+                  <button
+                    key={item}
+                    className={
+                      status.toLowerCase() === item.toLowerCase()
+                        ? `${styles.categoryButton} ${styles.active}`
+                        : styles.categoryButton
+                    }
+                    onClick={() => handleFeedbackStatus(item)}
+                  >
+                    {item}
+                  </button>
+                )
+              )}
+            </div>
+          )}
         </div>
 
-        <div className={styles.commentsContainer}>
-          <CommentsBox />
-        </div>
+        {comments?.length > 0 && (
+          <div className={styles.commentsContainer}>
+            <CommentsBox comments={comments} />
+          </div>
+        )}
 
         <div className={styles.addComments}>
-          <AddComment />
+          {getFeedbackItem?.status.toLowerCase() === 'released' ||
+          getFeedbackItem?.status.toLowerCase() === 'in - progress' ? (
+            <p className={styles.feedbackClosed}>
+              This feedback is no longer available.{' '}
+              <span>{getFeedbackItem?.status.toLowerCase()}</span>
+            </p>
+          ) : (
+            <AddComment />
+          )}
         </div>
       </div>
     </Section>

@@ -5,11 +5,12 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 interface Props {
   options: string[];
   formStyle?: boolean;
+  value?: string;
+  setValue?: (value: string) => void;
 }
 
-function Select({ options, formStyle = false }: Props) {
+function Select({ options, formStyle = false, value, setValue }: Props) {
   const [toggleSelect, setToggleSelect] = useState(false);
-  const [value, setValue] = useState(options[0]);
 
   function handleSelect(e: React.FormEvent) {
     e.preventDefault();
@@ -17,7 +18,7 @@ function Select({ options, formStyle = false }: Props) {
   }
 
   function handleSelectValue(chosenValue: string) {
-    setValue(chosenValue);
+    if (setValue) setValue(chosenValue);
   }
 
   return (

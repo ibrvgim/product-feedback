@@ -30,7 +30,7 @@ const router = createBrowserRouter([
 
   {
     element: <RoadMapPage />,
-    path: 'road-map/:id',
+    path: 'road-map/:roadID',
   },
 
   {
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
 
       {
         element: <FeedbackDetail />,
-        path: '/feedback/:id',
+        path: '/feedback/:feedbackID',
       },
     ],
   },

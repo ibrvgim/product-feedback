@@ -46,3 +46,13 @@ export interface InitialFeedbackData {
   companyId: string;
   companyName: string;
 }
+
+export interface FeedbackObject {
+  id: string | number;
+  title: string;
+  category: string;
+  upvotes: string | number;
+  status: string;
+  description: string;
+  comments: [];
+}

@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
 
-export function useLocalStorageState(initialState: boolean, key: string) {
+interface UserData {
+  firstName: string;
+  lastName: string;
+  nickname: string;
+}
+
+export function useLocalStorageState(
+  initialState: boolean | UserData,
+  key: string
+) {
   const [value, setValue] = useState(() => {
     const storedValue = localStorage.getItem(key);
     return storedValue ? JSON.parse(storedValue) : initialState;

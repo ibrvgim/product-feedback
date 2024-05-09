@@ -1,26 +1,36 @@
 import styles from '../../../styles/components/CommentsBox.module.css';
 import CommentItem from './CommentItem';
+import ReplyItem from './ReplyItem';
 
-function CommentsBox() {
+interface Comments {
+  comments: [
+    {
+      id: string;
+      replies: [];
+    }
+  ];
+}
+
+function CommentsBox({ comments }: Comments) {
+  if (!comments) return;
+
   return (
     <div className={styles.container}>
-      <h4>2 Comments</h4>
+      <h4>{comments.length} Comments</h4>
 
       <div className={styles.commentsContainer}>
-        <div className={styles.commentsItem}>
-          <CommentItem />
-          <div className={styles.commentReplies}>
-            <CommentItem />
-            <CommentItem />
+        {comments.map((item) => (
+          <div className={styles.commentsItem} key={item.id}>
+            <CommentItem item={item} />
+            {item.replies && item.replies.length > 0 && (
+              <div className={styles.commentReplies}>
+                {item.replies.map((reply) => (
+                  <ReplyItem key={item.id} reply={reply} />
+                ))}
+              </div>
+            )}
           </div>
-        </div>
-
-        <div className={styles.commentsItem}>
-          <CommentItem />
-          <div className={styles.commentReplies}>
-            <CommentItem />
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

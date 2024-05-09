@@ -16,7 +16,9 @@
 }
 
 .header h3 {
-  letter-spacing: 0.15rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
 }
 
 .icon {
@@ -27,4 +29,10 @@
 .sort {
   margin-left: 2rem;
   font-weight: 400;
+}
+
+.sort span {
+  font-size: 1.5rem;
+  color: #d1d5db;
+  font-weight: 500;
 }

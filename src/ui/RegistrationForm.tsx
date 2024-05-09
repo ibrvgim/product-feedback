@@ -64,7 +64,7 @@ function RegistrationForm() {
                       message: 'Minimum 5 characters',
                     },
                     validate: (value) =>
-                      /[^\w.!@#$%^&*()_+-=]/g.test(value) ||
+                      /^[^\d@#!$%^*()_=-]*$/g.test(value) === true ||
                       'Symbols and numbers are not allowed',
                   })}
                 />

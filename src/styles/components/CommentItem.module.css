@@ -1,6 +1,7 @@
 .container {
   display: flex;
   align-items: center;
+  margin-bottom: 2.5rem;
 }
 
 .userImage {
@@ -46,4 +47,28 @@
 .replyButton:hover {
   background-color: var(--color-blue-100);
   border: 1px solid var(--color-blue-200);
+}
+
+.replytag {
+  color: var(--color-violet-500);
+  font-weight: 600;
+}
+
+.admin {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-violet-400);
+  letter-spacing: 0.03rem;
+}
+
+.adminTag {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  background-color: var(--color-violet-300);
+  color: var(--color-grey-900);
+  display: inline;
+  padding: 0.05rem 1rem;
+  border-radius: 0.5rem;
 }

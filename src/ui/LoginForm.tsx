@@ -10,12 +10,22 @@ import { useForm } from 'react-hook-form';
 import { CompanyFormData } from '../types/types';
 import useSigninCompany from '../hooks/company/useSigninCompany.ts';
 import MiniSpinner from '../components/common/MiniSpinner';
+import { useEffect } from 'react';
+import useGetCompany from '../hooks/company/useGetCompany.ts';
+import { useNavigate } from 'react-router-dom';
+import FullSpinnerPage from '../pages/FullSpinnerPage.tsx';
 
 function LoginForm() {
   const { isLogining, loginCompany } = useSigninCompany();
+  const { isPending, isAuthenticated, companyData } = useGetCompany();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isAuthenticated) navigate(`/${companyData?.id}`, { replace: true });
+  }, [isAuthenticated, navigate, companyData]);
 
   function handleRegister(e: React.FormEvent) {
     e.preventDefault();
@@ -26,7 +36,10 @@ function LoginForm() {
   function handleOnSubmit(data: CompanyFormData) {
     const { email, password } = data;
     if (email && password) loginCompany({ email, password });
+    if (isLogining) dispatch(closeAllWindows());
   }
+
+  if (isPending) return <FullSpinnerPage />;
 
   return (
     <div className={styles.container}>

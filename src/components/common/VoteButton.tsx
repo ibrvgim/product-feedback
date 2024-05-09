@@ -3,9 +3,10 @@ import { IoIosArrowUp } from 'react-icons/io';
 
 interface Props {
   showNumber?: boolean;
+  votes: string | number;
 }
 
-function VoteButton({ showNumber = true }: Props) {
+function VoteButton({ showNumber = true, votes }: Props) {
   return (
     <button className={`${styles.voteContainer}`}>
       {/* ${styles.voted} */}
@@ -13,7 +14,7 @@ function VoteButton({ showNumber = true }: Props) {
       <span className={styles.icon}>
         <IoIosArrowUp />
       </span>
-      {showNumber && <span className={styles.votesNumber}>112</span>}
+      {showNumber && <span className={styles.votesNumber}>{votes}</span>}
     </button>
   );
 }

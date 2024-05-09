@@ -14,6 +14,12 @@ import {
 import FullSpinnerPage from '../../../pages/FullSpinnerPage';
 import useGetFeedbacks from '../../../hooks/feedbacks/useGetFeedbacks';
 import useGetCompany from '../../../hooks/company/useGetCompany';
+import { getFeedbacksByCategory } from '../../../utilities/getFeedbacksByCategory';
+import { getAllFeedbacks } from '../../../utilities/getAllFeedbacks';
+
+interface ItemType {
+  status: string;
+}
 
 function SideNavigation() {
   const navigate = useNavigate();
@@ -33,6 +39,14 @@ function SideNavigation() {
   function handleExitButton() {
     dispatch(openLogoutWindow());
   }
+
+  if (!id || !getFeedbacks) return;
+
+  const allFeedbacks: ItemType = getAllFeedbacks(id, getFeedbacks);
+
+  const plannedCategory = getFeedbacksByCategory('planned', allFeedbacks);
+  const progressCategory = getFeedbacksByCategory('in-progress', allFeedbacks);
+  const releasedCategory = getFeedbacksByCategory('released', allFeedbacks);
 
   if (isPending) return <FullSpinnerPage />;
 
@@ -59,12 +73,11 @@ function SideNavigation() {
         </div>
 
         <div className={styles.filters}>
-          <FilterButton>All</FilterButton>
-          <FilterButton>UI</FilterButton>
-          <FilterButton>UX</FilterButton>
-          <FilterButton>Enhancement</FilterButton>
-          <FilterButton>Feature</FilterButton>
-          <FilterButton>Bug</FilterButton>
+          {['All', 'UI', 'UX', 'Enhancement', 'Feature', 'Bug'].map((item) => (
+            <FilterButton key={item} item={item}>
+              {item}
+            </FilterButton>
+          ))}
         </div>
 
         <div className={styles.roadmap}>
@@ -73,7 +86,7 @@ function SideNavigation() {
 
             <button
               className={styles.viewButton}
-              onClick={() => navigate('/road-map/id')}
+              onClick={() => navigate(`/road-map/${id}`)}
             >
               More
             </button>
@@ -86,7 +99,7 @@ function SideNavigation() {
                 <p>Planned</p>
               </div>
 
-              <span>2</span>
+              <span>{plannedCategory.length || 0}</span>
             </li>
 
             <li>
@@ -95,7 +108,7 @@ function SideNavigation() {
                 <p>In Progress</p>
               </div>
 
-              <span>3</span>
+              <span>{progressCategory.length || 0}</span>
             </li>
 
             <li>
@@ -104,7 +117,7 @@ function SideNavigation() {
                 <p>Released</p>
               </div>
 
-              <span>1</span>
+              <span>{releasedCategory.length || 0}</span>
             </li>
           </ul>
         </div>

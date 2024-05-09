@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { loginMyCompany } from '../../data/company/companyAPI';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { handleID } from '../../utilities/handleID';
 function useSigninCompany() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
 
   const { isPending: isLogining, mutate: loginCompany } = useMutation({
     mutationFn: loginMyCompany,
@@ -20,6 +21,7 @@ function useSigninCompany() {
       navigate(`/${id}`, {
         replace: true,
       });
+      queryClient.invalidateQueries({ queryKey: ['company'] });
     },
 
     onError: (error) => {

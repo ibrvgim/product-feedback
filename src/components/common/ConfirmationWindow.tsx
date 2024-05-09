@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import { closeAllWindows } from '../../slices/modalWindowSlice';
 import useSignoutCompany from '../../hooks/company/useSignoutCompany';
 import MiniSpinner from './MiniSpinner';
+import { useNavigate } from 'react-router-dom';
 
 function ConfirmationWindow() {
   const dispatch = useDispatch();
   const { isSigningout, signout } = useSignoutCompany();
+  const navigate = useNavigate();
 
   function handleSignout() {
     signout();

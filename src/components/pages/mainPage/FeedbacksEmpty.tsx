@@ -1,8 +1,11 @@
+import { useParams } from 'react-router-dom';
 import styles from '../../../styles/components/FeedbacksEmpty.module.css';
 import Button from '../../common/Button';
 import { RiStickyNoteAddFill } from 'react-icons/ri';
 
 function FeedbacksEmpty() {
+  const { id } = useParams();
+
   return (
     <div className={styles.container}>
       <div>
@@ -17,8 +20,8 @@ function FeedbacksEmpty() {
         <p>Just share with us.</p>
       </div>
 
-      <Button path='/feedback/form'>
-        <RiStickyNoteAddFill style={{ fontSize: '2rem' }} />
+      <Button path={`/feedback/form?company=${id}`}>
+        <RiStickyNoteAddFill style={{ fontSize: '2rem', margin: '0 4rem' }} />
       </Button>
     </div>
   );

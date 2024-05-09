@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   loginForm: false,
   registerForm: false,
-  userForm: false,
+  userForm: true,
   settingForm: false,
   logoutWindow: false,
 };

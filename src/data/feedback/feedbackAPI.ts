@@ -1,4 +1,4 @@
-import { InitialFeedbackData } from '../../types/types';
+import { FeedbackObject, InitialFeedbackData } from '../../types/types';
 import { supabase } from '../other/supabase';
 
 export async function initialDataStoring({
@@ -7,17 +7,34 @@ export async function initialDataStoring({
 }: InitialFeedbackData) {
   const { data, error } = await supabase
     .from('feedbacks')
-    .insert([{ company_id: companyId, company_name: companyName }])
+    .insert([
+      {
+        company_id: companyId,
+        company_name: companyName,
+        feedbacks: { feedbacks: [] },
+      },
+    ])
     .select();
 
   if (error) throw new Error(error.message);
   return data;
 }
 
-export async function createFeedback({ feedbackItem }: { feedbackItem: [] }) {
+export async function createFeedback({
+  companyID,
+  feedbackItem,
+}: {
+  companyID: string;
+  feedbackItem: FeedbackObject[];
+}) {
   const { data, error } = await supabase
     .from('feedbacks')
-    .insert([{ feedbacks: feedbackItem }])
+    .update({
+      feedbacks: {
+        feedbacks: [...feedbackItem],
+      },
+    })
+    .eq('company_id', companyID)
     .select();
 
   if (error) throw new Error(error.message);
