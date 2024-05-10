@@ -7,12 +7,17 @@ import styles from '../../../styles/components/IntroductionHeader.module.css';
 import Button from '../../common/Button';
 import Logo from '../../common/Logo';
 import SmallDarkModeButton from '../../common/SmallDarkModeButton';
+import useGetCompany from '../../../hooks/company/useGetCompany';
+import { useNavigate } from 'react-router-dom';
 
 function IntroductionHeader() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuthenticated, companyData } = useGetCompany();
 
   function handleLoginWindow() {
-    dispatch(openLoginWindow());
+    if (isAuthenticated) navigate(`/${companyData?.id}`, { replace: true });
+    else dispatch(openLoginWindow());
   }
 
   function handleRegisterWindow() {

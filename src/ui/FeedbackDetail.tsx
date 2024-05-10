@@ -64,7 +64,7 @@ function FeedbackDetail() {
       deleteFeedback({ companyID, feedbackItem });
   }
 
-  const matchPage = companyData?.id === id;
+  const matchPage = companyData?.id === companyID;
 
   function handleFeedbackStatus(status: string) {
     const findIndex = allFeedbacks?.findIndex(

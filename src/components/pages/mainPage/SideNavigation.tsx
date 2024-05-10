@@ -45,7 +45,10 @@ function SideNavigation() {
   const allFeedbacks: ItemType = getAllFeedbacks(id, getFeedbacks);
 
   const plannedCategory = getFeedbacksByCategory('planned', allFeedbacks);
-  const progressCategory = getFeedbacksByCategory('in-progress', allFeedbacks);
+  const progressCategory = getFeedbacksByCategory(
+    'in - progress',
+    allFeedbacks
+  );
   const releasedCategory = getFeedbacksByCategory('released', allFeedbacks);
 
   if (isPending) return <FullSpinnerPage />;

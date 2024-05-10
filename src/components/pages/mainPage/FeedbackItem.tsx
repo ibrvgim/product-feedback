@@ -28,7 +28,7 @@ function FeedbackItem({
 
   return (
     <div className={styles.container}>
-      <VoteButton votes={votes} />
+      <VoteButton votes={votes} id={id} />
 
       <div
         className={styles.interactionContainer}

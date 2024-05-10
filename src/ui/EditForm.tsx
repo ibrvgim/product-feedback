@@ -12,6 +12,7 @@ import { formatString } from '../utilities/helpers';
 import useUpdateFeedback from '../hooks/feedbacks/useUpdateFeedback';
 import FullSpinnerPage from '../pages/FullSpinnerPage';
 import MiniSpinner from '../components/common/MiniSpinner';
+import toast from 'react-hot-toast';
 
 function EditForm() {
   const { register, handleSubmit, formState } = useForm();
@@ -36,6 +37,11 @@ function EditForm() {
     const { title, description } = data;
     if (!companyID) return;
 
+    const isEditted =
+      currentFeedback.title.toLowerCase() !== title.toLowerCase() ||
+      currentFeedback?.category.toLowerCase() !== value?.toLowerCase() ||
+      currentFeedback.description.toLowerCase() !== description.toLowerCase();
+
     const feedbackIndex = allFeedbacks?.findIndex(
       (item) => Number(item.id) === Number(feedbackID)
     );
@@ -48,11 +54,14 @@ function EditForm() {
       category: value,
     });
 
-    updateFeedback({
-      companyID,
-      feedbackItem: [...newFeedbacks],
-    });
-
+    if (isEditted) {
+      updateFeedback({
+        companyID,
+        feedbackItem: [...newFeedbacks],
+      });
+    } else {
+      toast.error('No changes detected.');
+    }
     dispatch(closeAllWindows());
   }
 

@@ -9,6 +9,7 @@ import useUpdateCompany from '../hooks/company/useUpdateCompany';
 import MiniSpinner from '../components/common/MiniSpinner';
 import useGetCompany from '../hooks/company/useGetCompany';
 import FullSpinnerPage from '../pages/FullSpinnerPage';
+import toast from 'react-hot-toast';
 
 interface FormData {
   password?: string;
@@ -31,7 +32,9 @@ function SettingsForm() {
 
   function handleOnSubmit(data: FormData) {
     const { password, companyName } = data;
-    if (password || companyName) updateCompanyData({ password, companyName });
+    if (password || companyData?.user_metadata.companyName !== data.companyName)
+      updateCompanyData({ password, companyName });
+    else toast.error('No changes detected.');
     dispatch(closeAllWindows());
   }
 

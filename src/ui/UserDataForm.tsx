@@ -32,7 +32,10 @@ function UserDataForm() {
   }, [dispatch, user, isAuthenticated, matchPage]);
 
   function onSubmit(data: Data) {
-    localStorage.setItem('user', JSON.stringify({ ...data, image: avatar }));
+    localStorage.setItem(
+      'user',
+      JSON.stringify({ ...data, image: avatar, votedFeedbacks: [] })
+    );
     toast.success('User created!');
   }
 
