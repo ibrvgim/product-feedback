@@ -16,8 +16,11 @@ import { formatString } from '../utilities/helpers';
 import useGetCompany from '../hooks/company/useGetCompany';
 import useDeleteFeedback from '../hooks/feedbacks/useDeleteFeedback';
 import MiniSpinner from '../components/common/MiniSpinner';
-import useCreateFeedback from '../hooks/feedbacks/useCreateFeedback';
 import useUpdateFeedback from '../hooks/feedbacks/useUpdateFeedback';
+import ModalWindow from '../components/common/ModalWindow';
+import EditForm from './EditForm';
+import { useDispatch, useSelector } from 'react-redux';
+import { openEditForm } from '../slices/modalWindowSlice';
 
 interface Item {
   id: string;
@@ -37,6 +40,8 @@ function FeedbackDetail() {
   const { isAuthenticated, companyData } = useGetCompany();
   const { isDeleting, deleteFeedback } = useDeleteFeedback();
   const { isUpdating, updateFeedback } = useUpdateFeedback();
+  const editForm = useSelector((state) => state.modalWindow.editForm);
+  const dispatch = useDispatch();
   if (!id || !getFeedbacks) return;
   const companyID = id?.slice(-36);
   const allFeedbacks = getAllFeedbacks(id, getFeedbacks);
@@ -79,81 +84,94 @@ function FeedbackDetail() {
   if (isPending) return <FullSpinnerPage />;
 
   return (
-    <Section>
-      <div className={styles.container}>
-        <div className={styles.goBackContainer}>
-          <GoBack />
-          {isAuthenticated && matchPage && (
-            <div className={styles.buttonsContainer}>
-              <Button style='edit'>
-                <BiSolidEditAlt />
-              </Button>
+    <>
+      <Section>
+        <div className={styles.container}>
+          <div className={styles.goBackContainer}>
+            <GoBack />
+            {isAuthenticated && matchPage && (
+              <div className={styles.buttonsContainer}>
+                <Button
+                  style='edit'
+                  handleClick={() => dispatch(openEditForm())}
+                >
+                  <BiSolidEditAlt />
+                </Button>
 
-              <Button
-                style='delete'
-                handleClick={handleDelete}
-                disabled={isDeleting}
-              >
-                {isDeleting ? <MiniSpinner space={false} /> : <IoTrash />}
-              </Button>
-            </div>
-          )}
-        </div>
-
-        <div className={styles.mainBox}>
-          <div className={styles.feedbackContent}>
-            <div>
-              <FilterButton fixed='true'>{formatString(category)}</FilterButton>
-              <p>{formatString(title)}</p>
-
-              <div className={styles.voteContainer}>
-                <VoteButton showNumber={false} votes={upvotes} />
+                <Button
+                  style='delete'
+                  handleClick={handleDelete}
+                  disabled={isDeleting}
+                >
+                  {isDeleting ? <MiniSpinner space={false} /> : <IoTrash />}
+                </Button>
               </div>
-            </div>
-
-            <p>{formatString(description)}</p>
+            )}
           </div>
 
-          {isAuthenticated && matchPage && (
-            <div className={styles.categoryContainer}>
-              {['Suggestion', 'Planned', 'In - Progress', 'Released'].map(
-                (item) => (
-                  <button
-                    key={item}
-                    className={
-                      status.toLowerCase() === item.toLowerCase()
-                        ? `${styles.categoryButton} ${styles.active}`
-                        : styles.categoryButton
-                    }
-                    onClick={() => handleFeedbackStatus(item)}
-                  >
-                    {item}
-                  </button>
-                )
-              )}
+          <div className={styles.mainBox}>
+            <div className={styles.feedbackContent}>
+              <div>
+                <FilterButton fixed='true'>
+                  {formatString(category)}
+                </FilterButton>
+                <p>{formatString(title)}</p>
+
+                <div className={styles.voteContainer}>
+                  <VoteButton showNumber={false} votes={upvotes} />
+                </div>
+              </div>
+
+              <p>{formatString(description)}</p>
+            </div>
+
+            {isAuthenticated && matchPage && (
+              <div className={styles.categoryContainer}>
+                {['Suggestion', 'Planned', 'In - Progress', 'Released'].map(
+                  (item) => (
+                    <button
+                      key={item}
+                      className={
+                        status.toLowerCase() === item.toLowerCase()
+                          ? `${styles.categoryButton} ${styles.active}`
+                          : styles.categoryButton
+                      }
+                      onClick={() => handleFeedbackStatus(item)}
+                      disabled={isUpdating}
+                    >
+                      {item}
+                    </button>
+                  )
+                )}
+              </div>
+            )}
+          </div>
+
+          {comments?.length > 0 && (
+            <div className={styles.commentsContainer}>
+              <CommentsBox comments={comments} />
             </div>
           )}
-        </div>
 
-        {comments?.length > 0 && (
-          <div className={styles.commentsContainer}>
-            <CommentsBox comments={comments} />
+          <div className={styles.addComments}>
+            {getFeedbackItem?.status.toLowerCase() === 'released' ||
+            getFeedbackItem?.status.toLowerCase() === 'in - progress' ? (
+              <p className={styles.feedbackClosed}>
+                This feedback is no longer available.{' '}
+                <span>{getFeedbackItem?.status.toLowerCase()}</span>
+              </p>
+            ) : (
+              <AddComment />
+            )}
           </div>
-        )}
-
-        <div className={styles.addComments}>
-          {getFeedbackItem?.status.toLowerCase() === 'released' ||
-          getFeedbackItem?.status.toLowerCase() === 'in - progress' ? (
-            <p className={styles.feedbackClosed}>
-              This feedback is no longer available.{' '}
-              <span>{getFeedbackItem?.status.toLowerCase()}</span>
-            </p>
-          ) : (
-            <AddComment />
-          )}
         </div>
-      </div>
-    </Section>
+      </Section>
+      {editForm && (
+        <ModalWindow>
+          <EditForm />
+        </ModalWindow>
+      )}
+    </>
   );
 }
 

@@ -1,0 +1,96 @@
+.container {
+  width: 70%;
+  min-height: 75%;
+  background-color: var(--color-grey-900);
+  color: var(--color-grey-100);
+  box-shadow: var(--shadow-lg);
+  border-radius: 2rem;
+  padding: 6rem 8rem;
+  border: 2px solid var(--color-violet-400);
+}
+
+.formContainer {
+  border-radius: 2rem;
+  position: relative;
+}
+
+.formIcon {
+  height: 10rem;
+  position: absolute;
+  top: -4%;
+  right: 0;
+  z-index: 10;
+}
+
+.formContainer h1 {
+  margin-bottom: 5rem;
+  color: var(--color-grey-300);
+  letter-spacing: 0.2rem;
+}
+
+.formContainer form > div,
+.topInputsContainer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.formContainer form input,
+.formContainer form textarea {
+  color: var(--color-grey-400);
+  border-radius: 0.7rem;
+  border: 1px solid var(--color-grey-600);
+  background-color: var(--color-grey-800);
+  padding: 0 2rem;
+}
+
+.formContainer form input {
+  height: 5rem;
+}
+
+.formContainer form textarea {
+  padding-top: 1rem;
+  resize: none;
+}
+
+.formContainer form label {
+  width: 100%;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
+  color: var(--color-grey-300);
+}
+
+.formContainer form > div label span {
+  float: right;
+  color: var(--color-red);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+}
+
+.formContainer form input::placeholder,
+.formContainer form textarea::placeholder {
+  color: var(--color-grey-600);
+  font-weight: 400;
+}
+
+.formContainer .buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-top: 4.5rem;
+}
+
+.formContainer .invalidInput {
+  border: 1.5px solid var(--color-red);
+}
+
+.container .topInputsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
