@@ -3,7 +3,7 @@
 Welcome to MINDHUB! This platform is designed to provide companies with the opportunity to collect user feedbacks about their product.
 
 > [!IMPORTANT]
-> With responsive design.
+> With Responsive Design.
 
 ## OVERVIEW
 
@@ -24,7 +24,7 @@ For the server part SUPABASE was used: https://supabase.com/
 
 ### Website link
 
-[MINDHUB](https://mindhub.vercel.app/)
+[MINDHUB](https://product-feedback-eight.vercel.app/)
 
 ### Setup
 
