@@ -1,6 +1,6 @@
 .container {
   max-width: 70%;
-  max-height: 75%;
+  min-height: 75%;
   background-color: var(--color-grey-900);
   color: var(--color-grey-100);
   box-shadow: var(--shadow-lg);
@@ -151,6 +151,7 @@
 @media only screen and (max-width: 49.7em) {
   .container {
     padding: 8rem 6rem;
+    margin-top: 26rem;
   }
 
   .heading h1 {
