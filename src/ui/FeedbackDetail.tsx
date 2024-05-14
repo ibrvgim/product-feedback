@@ -22,6 +22,7 @@ import EditForm from './EditForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { openEditForm } from '../slices/modalWindowSlice';
 import { FeedbackObject, States } from '../types/types';
+import useResponsiveDesign from '../hooks/other/useResponsiveDesign';
 
 function FeedbackDetail() {
   const [searchParams] = useSearchParams();
@@ -32,6 +33,7 @@ function FeedbackDetail() {
   const { isDeleting, deleteFeedback } = useDeleteFeedback();
   const { isUpdating, updateFeedback } = useUpdateFeedback();
   const editForm = useSelector((state: States) => state.modalWindow.editForm);
+  const { smallScreen } = useResponsiveDesign();
   const dispatch = useDispatch();
   if (!id || !getFeedbacks) return;
   const companyID = id?.slice(-36);
@@ -90,13 +92,14 @@ function FeedbackDetail() {
             <GoBack />
             {isAuthenticated && matchPage && (
               <div className={styles.buttonsContainer}>
-                <Button
-                  style='edit'
-                  handleClick={() => dispatch(openEditForm())}
-                >
-                  <BiSolidEditAlt />
-                </Button>
-
+                {!smallScreen && (
+                  <Button
+                    style='edit'
+                    handleClick={() => dispatch(openEditForm())}
+                  >
+                    <BiSolidEditAlt />
+                  </Button>
+                )}
                 <Button
                   style='delete'
                   handleClick={handleDelete}

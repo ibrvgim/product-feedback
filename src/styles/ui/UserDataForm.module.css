@@ -1,6 +1,6 @@
 .container {
-  width: 37%;
-  min-height: 65%;
+  min-width: 37%;
+  min-height: 45%;
   background-color: var(--color-grey-900);
   color: var(--color-grey-100);
   box-shadow: var(--shadow-lg);
@@ -8,13 +8,6 @@
   padding: 6rem 8rem;
   border: 2px solid var(--color-violet-400);
   position: relative;
-}
-
-.userIcon {
-  height: 8rem;
-  position: absolute;
-  top: 10%;
-  right: 7%;
 }
 
 .headingContainer {
@@ -99,4 +92,27 @@
 
 .container .inputsError {
   border: 1.5px solid var(--color-red);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 530px = 33.125em */
+@media only screen and (max-width: 33.125em) {
+  .container {
+    margin: 0 6rem;
+    padding: 6rem 4rem;
+  }
+
+  .headingContainer h1 {
+    font-size: 2.6rem;
+  }
+
+  .container input {
+    font-size: 1.4rem;
+    min-width: 15rem;
+  }
+
+  .container input::placeholder {
+    font-size: 1.3rem;
+  }
 }

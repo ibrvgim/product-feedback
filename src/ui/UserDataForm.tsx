@@ -46,12 +46,6 @@ function UserDataForm() {
 
   return (
     <div className={styles.container}>
-      <img
-        className={styles.userIcon}
-        src='/icons/world.png'
-        alt='user icon'
-        draggable={false}
-      />
       <div className={styles.headingContainer}>
         <h1>Personal Information</h1>
         <p>To continue, you must fill out this form.</p>

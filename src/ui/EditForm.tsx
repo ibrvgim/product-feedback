@@ -161,9 +161,11 @@ function EditForm() {
           </div>
 
           <div className={styles.buttonsContainer}>
-            <Button style='outline' handleClick={handleCancel}>
-              Cancel
-            </Button>
+            <div className={styles.cancelButton}>
+              <Button style='outline' handleClick={handleCancel}>
+                Cancel
+              </Button>
+            </div>
             <Button>{isUpdating ? <MiniSpinner /> : 'Save Changes'}</Button>
           </div>
         </form>

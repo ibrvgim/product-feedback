@@ -14,7 +14,9 @@ function VoteButton({ showNumber = true, votes, id }: Props) {
   const dispatch = useDispatch();
   const userData = useSelector((state: States) => state.votes.user);
 
-  const isVotted = userData?.votedFeedbacks.some((item) => item === Number(id));
+  const isVotted = userData?.votedFeedbacks?.some(
+    (item) => item === Number(id)
+  );
 
   function handleVotes() {
     dispatch(toggleVote(id));
