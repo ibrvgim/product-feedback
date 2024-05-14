@@ -13,6 +13,8 @@ import {
   UserInitialData,
 } from '../../../types/types';
 import useResponsiveDesign from '../../../hooks/other/useResponsiveDesign';
+import FullSpinnerPage from '../../../pages/FullSpinnerPage';
+import { getRandomAvatar } from '../../../utilities/helpers';
 
 function AddComment() {
   useEffect(() => {
@@ -31,7 +33,7 @@ function AddComment() {
   const id = searchParams.get('company');
   const { getFeedbacks } = useGetFeedbacks();
   const { isPosting, postComment } = useAddComment();
-  const { isAuthenticated, companyData } = useGetCompany();
+  const { isPending, isAuthenticated, companyData } = useGetCompany();
   const { smallScreen } = useResponsiveDesign();
 
   if (!id || !getFeedbacks) return;
@@ -50,7 +52,7 @@ function AddComment() {
 
   const allComments = currentFeedback?.comments || [];
 
-  if (!user) return;
+  if (!user && !isAuthenticated) return;
 
   if (isAuthenticated && companyID === companyData?.id) {
     userInfo = {
@@ -60,9 +62,9 @@ function AddComment() {
     };
   } else {
     userInfo = {
-      image: user.image,
+      image: user?.image || getRandomAvatar(),
       name: `${user?.firstName} ${user?.lastName}`,
-      username: user?.nickname,
+      username: user?.nickname || '',
     };
   }
 
@@ -98,6 +100,8 @@ function AddComment() {
     postComment({ companyID, feedbackItem: [...feedbackItem] });
     setValue('');
   }
+
+  if (isPending) return <FullSpinnerPage />;
 
   return (
     <div className={styles.container}>

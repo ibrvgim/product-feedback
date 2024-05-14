@@ -3,6 +3,7 @@ import styles from '../../styles/components/VoteButton.module.css';
 import { IoIosArrowUp } from 'react-icons/io';
 import { toggleVote } from '../../slices/votesSlice';
 import { States } from '../../types/types';
+import toast from 'react-hot-toast';
 
 interface Props {
   id: string | number;
@@ -19,6 +20,8 @@ function VoteButton({ showNumber = true, votes, id }: Props) {
   );
 
   function handleVotes() {
+    if (!userData) toast.error('The owner of the company cannot vote!');
+
     dispatch(toggleVote(id));
   }
 

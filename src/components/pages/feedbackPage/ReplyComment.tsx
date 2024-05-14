@@ -15,6 +15,7 @@ import {
   UserInitialData,
 } from '../../../types/types';
 import useResponsiveDesign from '../../../hooks/other/useResponsiveDesign';
+import { getRandomAvatar } from '../../../utilities/helpers';
 
 function ReplyComment({
   id,
@@ -61,7 +62,7 @@ function ReplyComment({
 
   const allReplies = currentComment?.replies || [];
 
-  if (!user) return;
+  if (!user && !isAuthenticated) return;
 
   if (isAuthenticated && companyID === companyData?.id) {
     userInfo = {
@@ -71,9 +72,9 @@ function ReplyComment({
     };
   } else {
     userInfo = {
-      image: user.image,
+      image: user?.image || getRandomAvatar(),
       name: `${user?.firstName} ${user?.lastName}`,
-      username: user?.nickname,
+      username: user?.nickname || '',
     };
   }
 
@@ -102,7 +103,7 @@ function ReplyComment({
       (item: { id: string | number }) => item.id === id
     );
 
-    if (!findIndexComment) return;
+    if (!findIndexComment && findIndexComment !== 0) return;
 
     const commentItem = getAllComments?.slice();
     commentItem?.splice(findIndexComment, 1, newComment);

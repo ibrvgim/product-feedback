@@ -24,3 +24,28 @@
   text-transform: uppercase;
   letter-spacing: 0.2rem;
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 530px = 33.125em */
+@media only screen and (max-width: 33.125em) {
+  .header h1 {
+    font-size: 1.9rem;
+  }
+
+  .header img {
+    height: 4rem;
+  }
+}
+
+/* 400px = 25em */
+
+@media only screen and (max-width: 25em) {
+  .header h1 {
+    display: none;
+  }
+
+  .header img {
+    height: 5rem;
+  }
+}

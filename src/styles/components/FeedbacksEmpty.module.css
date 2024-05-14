@@ -8,7 +8,8 @@
   margin-top: 3rem;
   border-radius: 1rem;
   box-shadow: var(--shadow-md);
-  padding: 6rem 0;
+  padding: 6rem 4rem;
+  text-align: center;
 }
 
 .container > div {
@@ -35,4 +36,13 @@
 .icon {
   height: 18rem;
   margin-bottom: 3.7rem;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 530px = 33.125em */
+@media only screen and (max-width: 33.125em) {
+  .container h1 {
+    font-size: 2.4rem;
+  }
 }

@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { closeAllWindows } from '../slices/modalWindowSlice';
 import useGetCompany from '../hooks/company/useGetCompany';
 import FullSpinnerPage from '../pages/FullSpinnerPage';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { getRandomAvatar } from '../utilities/helpers';
 
 interface Data {
@@ -22,8 +22,11 @@ function UserDataForm() {
   const dispatch = useDispatch();
   const { isPending, isAuthenticated, companyData } = useGetCompany();
   const avatar = getRandomAvatar();
+  const [searchParams] = useSearchParams();
+  const getID = searchParams.get('company');
   const { id } = useParams();
-  const matchPage = id?.slice(-36) === companyData?.id;
+  const matchPage =
+    getID?.slice(-36) === companyData?.id || id?.slice(-36) === companyData?.id;
   const user = localStorage.getItem('user');
 
   useEffect(() => {
