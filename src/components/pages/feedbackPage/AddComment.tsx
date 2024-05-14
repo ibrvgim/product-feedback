@@ -7,14 +7,23 @@ import { getAllFeedbacks } from '../../../utilities/getAllFeedbacks';
 import { useAddComment } from '../../../hooks/feedbacks/useCreateFeedback';
 import MiniSpinner from '../../common/MiniSpinner';
 import useGetCompany from '../../../hooks/company/useGetCompany';
+import {
+  FeedbackObject,
+  UserInfo,
+  UserInitialData,
+} from '../../../types/types';
+import useResponsiveDesign from '../../../hooks/other/useResponsiveDesign';
 
 function AddComment() {
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('user'));
-    setUser(userData);
+    const userDataString = localStorage.getItem('user');
+    if (userDataString !== null) {
+      const userData = JSON.parse(userDataString);
+      setUser(userData);
+    }
   }, []);
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<UserInitialData | null>(null);
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [searchParams] = useSearchParams();
@@ -22,12 +31,17 @@ function AddComment() {
   const id = searchParams.get('company');
   const { getFeedbacks } = useGetFeedbacks();
   const { isPosting, postComment } = useAddComment();
-  if (!id || !getFeedbacks) return;
-  const allFeedbacks = getAllFeedbacks(id, getFeedbacks);
   const { isAuthenticated, companyData } = useGetCompany();
+  const { smallScreen } = useResponsiveDesign();
+
+  if (!id || !getFeedbacks) return;
+
+  const allFeedbacks: FeedbackObject[] =
+    getAllFeedbacks(id, getFeedbacks) || [];
+
   if (!allFeedbacks) return;
   const companyID = id.slice(-36);
-  let userInfo;
+  let userInfo: UserInfo;
 
   const [currentFeedback] = allFeedbacks.filter(
     (item: { id: string | number }) => item.id === Number(feedbackID)
@@ -95,8 +109,12 @@ function AddComment() {
           className={error ? styles.invalidInput : ''}
           id='comment'
           name='comment'
-          rows={4}
-          placeholder='Just leave your thoughts and suggestions...'
+          rows={smallScreen ? 2 : 4}
+          placeholder={
+            smallScreen
+              ? 'Add Comments...'
+              : 'Just leave your thoughts and suggestions...'
+          }
           value={value}
           onChange={(e) => setValue(e.target.value)}
           maxLength={300}
@@ -105,10 +123,11 @@ function AddComment() {
 
       <div className={styles.submitContainer}>
         <p>
-          <span>{value ? 300 - value.length : 300}</span> characters left
+          <span>{value ? 300 - value.length : 300}</span>{' '}
+          {smallScreen ? 'chr.' : 'characters left'}
         </p>
         <Button handleClick={handleOnSubmit} disabled={isPosting}>
-          {isPosting ? <MiniSpinner /> : 'Post Comment'}
+          {isPosting ? <MiniSpinner /> : smallScreen ? 'Post' : 'Post Comment'}
         </Button>
       </div>
     </div>

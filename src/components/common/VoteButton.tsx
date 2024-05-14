@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/components/VoteButton.module.css';
 import { IoIosArrowUp } from 'react-icons/io';
 import { toggleVote } from '../../slices/votesSlice';
+import { States } from '../../types/types';
 
 interface Props {
   id: string | number;
@@ -11,9 +12,9 @@ interface Props {
 
 function VoteButton({ showNumber = true, votes, id }: Props) {
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state?.votes.user);
+  const userData = useSelector((state: States) => state.votes.user);
 
-  const isVotted = userData.votedFeedbacks.some((item) => item === id);
+  const isVotted = userData?.votedFeedbacks.some((item) => item === Number(id));
 
   function handleVotes() {
     dispatch(toggleVote(id));

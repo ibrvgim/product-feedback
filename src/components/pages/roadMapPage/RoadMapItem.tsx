@@ -3,19 +3,11 @@ import styles from '../../../styles/components/RoadMapItem.module.css';
 import FilterButton from '../../common/FilterButton';
 import { FaRegComments } from 'react-icons/fa6';
 import { formatString } from '../../../utilities/helpers';
+import { FeedbackObject } from '../../../types/types';
 
 interface Props {
   color: string;
-  item: ItemType;
-}
-
-interface ItemType {
-  id: string;
-  title: string;
-  category: string;
-  description: string;
-  comments: [];
-  status: string;
+  item: FeedbackObject;
 }
 
 function RoadMapItem({ color, item }: Props) {

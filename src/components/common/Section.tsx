@@ -1,8 +1,9 @@
-import { useSelector } from 'react-redux';
 import styles from '../../styles/components/Section.module.css';
+import { useSelector } from 'react-redux';
 import UserDataForm from '../../ui/UserDataForm';
 import ModalWindow from './ModalWindow';
 import SmallDarkModeButton from './SmallDarkModeButton';
+import { States } from '../../types/types';
 
 interface Props {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface Props {
 }
 
 function Section({ children, showMode = true }: Props) {
-  const { userForm } = useSelector((state) => state.modalWindow);
+  const { userForm } = useSelector((state: States) => state.modalWindow);
 
   return (
     <>

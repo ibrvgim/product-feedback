@@ -11,19 +11,17 @@ import {
   openLogoutWindow,
   openSettingWindow,
 } from '../../../slices/modalWindowSlice';
+import { IoFootstepsOutline } from 'react-icons/io5';
 import FullSpinnerPage from '../../../pages/FullSpinnerPage';
 import useGetFeedbacks from '../../../hooks/feedbacks/useGetFeedbacks';
 import useGetCompany from '../../../hooks/company/useGetCompany';
 import { getFeedbacksByCategory } from '../../../utilities/getFeedbacksByCategory';
 import { getAllFeedbacks } from '../../../utilities/getAllFeedbacks';
-
-interface ItemType {
-  status: string;
-}
+import { FeedbackObject, States } from '../../../types/types';
 
 function SideNavigation() {
   const navigate = useNavigate();
-  const { logoutWindow } = useSelector((state) => state.modalWindow);
+  const { logoutWindow } = useSelector((state: States) => state.modalWindow);
   const dispatch = useDispatch();
 
   // GET FEEDBACKS
@@ -42,7 +40,8 @@ function SideNavigation() {
 
   if (!id || !getFeedbacks) return;
 
-  const allFeedbacks: ItemType = getAllFeedbacks(id, getFeedbacks);
+  const allFeedbacks: FeedbackObject[] =
+    getAllFeedbacks(id, getFeedbacks) || [];
 
   const plannedCategory = getFeedbacksByCategory('planned', allFeedbacks);
   const progressCategory = getFeedbacksByCategory(
@@ -57,20 +56,29 @@ function SideNavigation() {
     <>
       <div className={styles.container}>
         <div className={styles.header}>
-          {isAuthenticated && matchAccount && (
-            <div className={styles.iconsContainer}>
-              <button
-                className={styles.settingItem}
-                onClick={() => dispatch(openSettingWindow())}
-              >
-                <IoSettingsOutline />
-              </button>
+          <div className={styles.iconsContainer}>
+            <button
+              className={styles.roadmapIcon}
+              onClick={() => navigate(`/road-map/${id}`)}
+            >
+              <IoFootstepsOutline />
+            </button>
 
-              <button className={styles.exitIcon} onClick={handleExitButton}>
-                <IoMdLogOut />
-              </button>
-            </div>
-          )}
+            {isAuthenticated && matchAccount && (
+              <>
+                <button
+                  className={styles.settingItem}
+                  onClick={() => dispatch(openSettingWindow())}
+                >
+                  <IoSettingsOutline />
+                </button>
+
+                <button className={styles.exitIcon} onClick={handleExitButton}>
+                  <IoMdLogOut />
+                </button>
+              </>
+            )}
+          </div>
           <h2>{filter.company_name}</h2>
           <p>Feedback Board</p>
         </div>
@@ -124,7 +132,6 @@ function SideNavigation() {
             </li>
           </ul>
         </div>
-
         <ThemeMode />
       </div>
 

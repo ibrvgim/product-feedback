@@ -1,6 +1,17 @@
 import { inputCleaner } from './helpers';
 
-export function handleID(data: any) {
+interface Data {
+  user: User;
+}
+
+interface User {
+  user_metadata: {
+    companyName: string;
+  };
+  id: string;
+}
+
+export function handleID(data: Data) {
   if (!data) return;
 
   const companyName = data?.user?.user_metadata.companyName;

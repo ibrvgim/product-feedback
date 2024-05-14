@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/components/FilterButton.module.css';
 import { setFilter } from '../../slices/sortSlice';
+import { States } from '../../types/types';
 
 interface Props {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface Props {
 
 function FilterButton({ children, fixed, item }: Props) {
   const dispatch = useDispatch();
-  const filter = useSelector((state) => state.sortBy.filter);
+  const filter = useSelector((state: States) => state.sortBy.filter);
   const active = item === filter;
 
   function handleOnClick() {

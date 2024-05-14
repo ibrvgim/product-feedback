@@ -10,21 +10,23 @@ import { useSelector } from 'react-redux';
 import ModalWindow from '../components/common/ModalWindow';
 import RegistrationForm from '../ui/RegistrationForm';
 import LoginForm from '../ui/LoginForm';
-import { ModalWindow as ModalWindowType } from '../types/types';
+import { States } from '../types/types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FullSpinnerPage from './FullSpinnerPage';
 import useSigninCompany from '../hooks/company/useSigninCompany';
 import useGetCompany from '../hooks/company/useGetCompany';
+import useResponsiveDesign from '../hooks/other/useResponsiveDesign';
 
 function IntroductionPage() {
   const { loginForm, registerForm } = useSelector(
-    (state): ModalWindowType => state?.modalWindow
+    (state: States) => state?.modalWindow
   );
   const [input, setInput] = useState('');
   const navigate = useNavigate();
   const { isLogining } = useSigninCompany();
   const { isPending } = useGetCompany();
+  const { smallScreen } = useResponsiveDesign();
 
   function handleSearch() {
     if (input) navigate(`/${input}`);
@@ -61,7 +63,13 @@ function IntroductionPage() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                 />
-                <Button handleClick={handleSearch}>Search</Button>
+                <Button handleClick={handleSearch}>
+                  {smallScreen ? (
+                    <IoMdSearch style={{ fontSize: '1.9rem' }} />
+                  ) : (
+                    'Search'
+                  )}
+                </Button>
               </div>
             </div>
 

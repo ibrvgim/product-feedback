@@ -21,16 +21,7 @@ import ModalWindow from '../components/common/ModalWindow';
 import EditForm from './EditForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { openEditForm } from '../slices/modalWindowSlice';
-
-interface Item {
-  id: string;
-  title: string;
-  category: string;
-  upvotes: string | number;
-  status: string;
-  description: string;
-  comments: [];
-}
+import { FeedbackObject, States } from '../types/types';
 
 function FeedbackDetail() {
   const [searchParams] = useSearchParams();
@@ -40,21 +31,27 @@ function FeedbackDetail() {
   const { isAuthenticated, companyData } = useGetCompany();
   const { isDeleting, deleteFeedback } = useDeleteFeedback();
   const { isUpdating, updateFeedback } = useUpdateFeedback();
-  const editForm = useSelector((state) => state.modalWindow.editForm);
+  const editForm = useSelector((state: States) => state.modalWindow.editForm);
   const dispatch = useDispatch();
   if (!id || !getFeedbacks) return;
   const companyID = id?.slice(-36);
-  const allFeedbacks = getAllFeedbacks(id, getFeedbacks);
+  const allFeedbacks: FeedbackObject[] =
+    getAllFeedbacks(id, getFeedbacks) || [];
 
   const getFeedbackItem = allFeedbacks?.find(
-    (item: Item) => String(item.id) === String(feedbackID)
+    (item) => String(item.id) === String(feedbackID)
   );
 
   if (!getFeedbackItem) return;
 
-  // status
-  const { title, category, upvotes, description, comments, status }: Item =
-    getFeedbackItem;
+  const {
+    title,
+    category,
+    upvotes,
+    description,
+    comments,
+    status,
+  }: FeedbackObject = getFeedbackItem;
 
   function handleDelete() {
     const feedbackItem = allFeedbacks?.filter(
@@ -72,7 +69,9 @@ function FeedbackDetail() {
         Number(item.id) === Number(getFeedbackItem?.id)
     );
 
-    const newFeedbacks = allFeedbacks?.slice();
+    if (!getFeedbackItem) return;
+
+    const newFeedbacks: FeedbackObject[] = allFeedbacks?.slice();
     newFeedbacks?.splice(findIndex, 1, { ...getFeedbackItem, status: status });
 
     updateFeedback({
@@ -118,7 +117,11 @@ function FeedbackDetail() {
                 <p>{formatString(title)}</p>
 
                 <div className={styles.voteContainer}>
-                  <VoteButton showNumber={false} votes={upvotes} />
+                  <VoteButton
+                    showNumber={false}
+                    votes={upvotes}
+                    id={Number(feedbackID)}
+                  />
                 </div>
               </div>
 

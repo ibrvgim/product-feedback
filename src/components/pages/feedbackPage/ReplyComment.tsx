@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import styles from '../../../styles/components/ReplyComment.module.css';
+import { useEffect, useState } from 'react';
 import Button from '../../common/Button';
 import { useParams, useSearchParams } from 'react-router-dom';
 import useGetFeedbacks from '../../../hooks/feedbacks/useGetFeedbacks';
@@ -8,6 +8,13 @@ import { useAddComment } from '../../../hooks/feedbacks/useCreateFeedback';
 import MiniSpinner from '../../common/MiniSpinner';
 import useGetCompany from '../../../hooks/company/useGetCompany';
 import FullSpinnerPage from '../../../pages/FullSpinnerPage';
+import {
+  Comments,
+  FeedbackObject,
+  UserInfo,
+  UserInitialData,
+} from '../../../types/types';
+import useResponsiveDesign from '../../../hooks/other/useResponsiveDesign';
 
 function ReplyComment({
   id,
@@ -17,11 +24,14 @@ function ReplyComment({
   toggleReply: () => void;
 }) {
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('user'));
-    setUser(userData);
+    const userData = localStorage.getItem('user');
+    if (userData !== null) {
+      const user = JSON.parse(userData);
+      setUser(user);
+    }
   }, []);
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<UserInitialData | null>(null);
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [searchParams] = useSearchParams();
@@ -30,22 +40,26 @@ function ReplyComment({
   const { getFeedbacks } = useGetFeedbacks();
   const { isPosting, postComment } = useAddComment();
   const { companyData, isAuthenticated, isPending } = useGetCompany();
+  const { smallScreen } = useResponsiveDesign();
+
   if (!companyID || !getFeedbacks) return;
-  let userInfo;
+  let userInfo: UserInfo;
 
-  const allFeddbacks = getAllFeedbacks(companyID, getFeedbacks);
+  const allFeddbacks: FeedbackObject[] =
+    getAllFeedbacks(companyID, getFeedbacks) || [];
 
-  const currentFeedback =
-    allFeddbacks?.find(
-      (item: { id: string | number }) => item.id === Number(feedbackID)
-    ) || [];
+  if (allFeddbacks.length === 0) return;
 
-  const getAllComments = currentFeedback?.comments || [];
-  const currentComment =
-    getAllComments.find((item: { id: string | number }) => item.id === id) ||
-    [];
+  const currentFeedback = allFeddbacks.find(
+    (item: { id: string | number }) => item.id === Number(feedbackID)
+  );
 
-  const allReplies = currentComment.replies;
+  const getAllComments = currentFeedback?.comments;
+  const currentComment = getAllComments?.find(
+    (item: { id: string | number }) => item.id === id
+  );
+
+  const allReplies = currentComment?.replies || [];
 
   if (!user) return;
 
@@ -69,27 +83,31 @@ function ReplyComment({
       return;
     } else setError('');
 
-    const newComment = {
+    const newComment: Comments = {
       ...currentComment,
       replies: [
         ...allReplies,
         {
           id: Date.now(),
           content: value,
-          replyingTo: currentComment.user.username,
+          replyingTo: currentComment?.user.username || '',
           user: userInfo,
         },
       ],
     };
 
-    const findIndexComment =
-      getAllComments?.findIndex(
-        (item: { id: string | number }) => item.id === id
-      ) || [];
-    const commentItem = getAllComments.slice();
-    commentItem.splice(findIndexComment, 1, newComment);
+    const findIndexComment = getAllComments?.findIndex(
+      (item: { id: string | number }) => item.id === id
+    );
 
-    const newFeedback = {
+    if (!findIndexComment) return;
+
+    const commentItem = getAllComments?.slice();
+    commentItem?.splice(findIndexComment, 1, newComment);
+
+    if (!commentItem) return;
+
+    const newFeedback: FeedbackObject = {
       ...currentFeedback,
       comments: [...commentItem],
     };
@@ -97,9 +115,12 @@ function ReplyComment({
     const findIndexFeedback = allFeddbacks?.findIndex(
       (item: { id: string | number }) => item.id === Number(feedbackID)
     );
+
     if (findIndexFeedback && findIndexFeedback < 0) return;
     const feedbackItem = allFeddbacks?.slice();
     feedbackItem?.splice(findIndexFeedback, 1, newFeedback);
+
+    if (!companyID) return;
 
     postComment({ companyID, feedbackItem: [...feedbackItem] });
     setValue('');
@@ -116,15 +137,15 @@ function ReplyComment({
           className={error ? styles.invalidInput : ''}
           id='reply'
           name='reply'
-          rows={2}
-          placeholder='Reply to the comment...'
+          rows={smallScreen ? 1 : 2}
+          placeholder={smallScreen ? 'Reply...' : 'Reply to the comment...'}
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
       </div>
 
       <Button style='reply' handleClick={handleReply}>
-        {isPosting ? <MiniSpinner /> : 'Post Reply'}
+        {isPosting ? <MiniSpinner /> : smallScreen ? 'Post' : 'Post Reply'}
       </Button>
     </div>
   );

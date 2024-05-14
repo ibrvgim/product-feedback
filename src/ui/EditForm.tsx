@@ -13,6 +13,12 @@ import useUpdateFeedback from '../hooks/feedbacks/useUpdateFeedback';
 import FullSpinnerPage from '../pages/FullSpinnerPage';
 import MiniSpinner from '../components/common/MiniSpinner';
 import toast from 'react-hot-toast';
+import { FeedbackObject } from '../types/types';
+
+interface Data {
+  title: string;
+  description: string;
+}
 
 function EditForm() {
   const { register, handleSubmit, formState } = useForm();
@@ -21,26 +27,29 @@ function EditForm() {
   const { isPending, getFeedbacks } = useGetFeedbacks();
   const [searchParams] = useSearchParams();
   const { feedbackID } = useParams();
-  const companyID = searchParams.get('company');
+  const companyID = searchParams.get('company')?.slice(-36);
   const { isUpdating, updateFeedback } = useUpdateFeedback();
-  //   if (!companyID || !getFeedbacks) return;
+  // if (!companyID || !getFeedbacks) return;
 
-  const allFeedbacks = getAllFeedbacks(companyID, getFeedbacks);
-  const currentFeedback = allFeedbacks?.find(
+  const allFeedbacks: FeedbackObject[] =
+    getAllFeedbacks(companyID, getFeedbacks) || [];
+
+  const currentFeedback = allFeedbacks.find(
     (item) => Number(item.id) === Number(feedbackID)
   );
-  const { title, category, description } = currentFeedback;
 
+  // if (!currentFeedback) return;
+  const { title, category, description } = currentFeedback;
   const [value, setValue] = useState(formatString(category));
 
-  function handleOnSubmit(data) {
+  function handleOnSubmit(data: Data) {
     const { title, description } = data;
     if (!companyID) return;
 
     const isEditted =
-      currentFeedback.title.toLowerCase() !== title.toLowerCase() ||
+      currentFeedback?.title.toLowerCase() !== title.toLowerCase() ||
       currentFeedback?.category.toLowerCase() !== value?.toLowerCase() ||
-      currentFeedback.description.toLowerCase() !== description.toLowerCase();
+      currentFeedback?.description.toLowerCase() !== description.toLowerCase();
 
     const feedbackIndex = allFeedbacks?.findIndex(
       (item) => Number(item.id) === Number(feedbackID)
@@ -100,6 +109,10 @@ function EditForm() {
                   minLength: {
                     value: 10,
                     message: 'Minimum 10 characters',
+                  },
+                  maxLength: {
+                    value: 30,
+                    message: 'Maximum 30 characters',
                   },
                 })}
                 defaultValue={title}

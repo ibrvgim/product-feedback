@@ -1,19 +1,9 @@
 import styles from '../../../styles/components/CommentsBox.module.css';
+import { Comments } from '../../../types/types';
 import CommentItem from './CommentItem';
 import ReplyItem from './ReplyItem';
 
-interface Comments {
-  comments: [
-    {
-      id: string;
-      replies: [];
-    }
-  ];
-}
-
-function CommentsBox({ comments }: Comments) {
-  if (!comments) return;
-
+function CommentsBox({ comments }: { comments: Comments[] }) {
   return (
     <div className={styles.container}>
       <h4>{comments.length} Comments</h4>

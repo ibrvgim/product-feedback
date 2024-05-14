@@ -9,12 +9,15 @@ import useGetFeedbacks from '../hooks/feedbacks/useGetFeedbacks';
 import FullSpinnerPage from './FullSpinnerPage';
 import { useParams } from 'react-router-dom';
 import PageNotFound from './PageNotFound';
+import { States } from '../types/types';
+import useResponsiveDesign from '../hooks/other/useResponsiveDesign';
 
 function MainPage() {
-  const { settingForm } = useSelector((state) => state.modalWindow);
+  const { settingForm } = useSelector((state: States) => state.modalWindow);
   const { isPending, getFeedbacks } = useGetFeedbacks();
   const { id } = useParams();
   const getID = id?.slice(-36);
+  const { mediumScreen } = useResponsiveDesign();
 
   const filter = getFeedbacks?.find((item) => item.company_id === getID);
 
@@ -23,7 +26,7 @@ function MainPage() {
 
   return (
     <>
-      <Section showMode={false}>
+      <Section showMode={mediumScreen}>
         <div className={styles.container}>
           <SideNavigation />
           <FeedbacksContainer />

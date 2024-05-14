@@ -5,7 +5,7 @@ import { DarkModeProvider } from './context/DarkModeContext';
 import PageNotFound from './pages/PageNotFound';
 import IntroductionPage from './pages/IntroductionPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
 
 const MainPage = lazy(() => import('./pages/MainPage'));
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       <DarkModeProvider>
         <Suspense fallback={<FullSpinnerPage />}>
           <RouterProvider router={router} />

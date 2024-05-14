@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeAllWindows } from '../slices/modalWindowSlice';
-import toast from 'react-hot-toast';
 import useGetCompany from '../hooks/company/useGetCompany';
 import FullSpinnerPage from '../pages/FullSpinnerPage';
 import { useParams } from 'react-router-dom';
@@ -21,13 +20,17 @@ function UserDataForm() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem('user'));
   const { isPending, isAuthenticated, companyData } = useGetCompany();
   const avatar = getRandomAvatar();
   const { id } = useParams();
   const matchPage = id?.slice(-36) === companyData?.id;
+  const user = localStorage.getItem('user');
 
   useEffect(() => {
+    if (user !== null) {
+      JSON.parse(user);
+    }
+
     if (user || (isAuthenticated && matchPage)) dispatch(closeAllWindows());
   }, [dispatch, user, isAuthenticated, matchPage]);
 
@@ -36,7 +39,7 @@ function UserDataForm() {
       'user',
       JSON.stringify({ ...data, image: avatar, votedFeedbacks: [] })
     );
-    toast.success('User created!');
+    location.reload();
   }
 
   if (isPending) return <FullSpinnerPage />;

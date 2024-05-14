@@ -15,6 +15,8 @@
 }
 
 .header {
+  min-width: 25rem;
+  flex: 1;
   background: var(--radial-gradient);
   color: #fff;
   position: relative;
@@ -30,7 +32,8 @@
 }
 
 .settingItem,
-.exitIcon {
+.exitIcon,
+.roadmapIcon {
   line-height: 0;
   background-color: transparent;
   border: none;
@@ -41,14 +44,15 @@
 }
 
 .settingItem:hover,
-.exitIcon:hover {
+.exitIcon:hover,
+.roadmapIcon:hover {
   color: var(--color-blue-300);
   opacity: 1;
   transform: translateY(-0.15rem);
 }
 
-.exitIcon:hover {
-  color: var(--color-blue-300);
+.roadmapIcon {
+  display: none;
 }
 
 .header p {
@@ -64,13 +68,16 @@
 }
 
 .filters {
+  max-width: 30rem;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   row-gap: 1.5rem;
   column-gap: 1rem;
 }
 
 .roadmap {
+  min-width: 25rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -142,4 +149,50 @@
 
 .released {
   background-color: var(--color-cyan);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 970px  = 60.625eem*/
+@media only screen and (max-width: 60.625em) {
+  .container {
+    display: flex;
+    gap: 2rem;
+    margin: 4rem 0 2rem 0;
+  }
+
+  .container .header {
+    padding-top: 8.5rem;
+  }
+}
+
+/* 795px  = 49.7eem*/
+@media only screen and (max-width: 49.7em) {
+  .roadmap {
+    display: none;
+  }
+
+  .iconsContainer {
+    gap: 1.2rem;
+  }
+
+  .settingItem,
+  .exitIcon,
+  .roadmapIcon {
+    display: block;
+    font-size: 2.7rem;
+  }
+}
+
+/* 530px = 33.125em */
+
+@media only screen and (max-width: 33.125em) {
+  .container {
+    display: grid;
+    gap: 0;
+  }
+
+  .container .filters {
+    max-width: 100%;
+  }
 }

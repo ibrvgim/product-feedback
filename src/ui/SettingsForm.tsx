@@ -10,6 +10,7 @@ import MiniSpinner from '../components/common/MiniSpinner';
 import useGetCompany from '../hooks/company/useGetCompany';
 import FullSpinnerPage from '../pages/FullSpinnerPage';
 import toast from 'react-hot-toast';
+import useResponsiveDesign from '../hooks/other/useResponsiveDesign';
 
 interface FormData {
   password?: string;
@@ -22,6 +23,7 @@ function SettingsForm() {
   const { register, handleSubmit, getValues, formState } = useForm();
   const { errors } = formState;
   const dispatch = useDispatch();
+  const { smallScreen } = useResponsiveDesign();
 
   if (!companyData?.user_metadata) return;
   const { companyName, email } = companyData.user_metadata;
@@ -45,7 +47,12 @@ function SettingsForm() {
       <div className={styles.heading}>
         <h1>Settings</h1>
 
-        <img src='/icons/settings.svg' alt='settings image' draggable={false} />
+        <img
+          src='/icons/settings.svg'
+          alt='settings image'
+          draggable={false}
+          className={styles.image}
+        />
       </div>
 
       <form onSubmit={handleSubmit(handleOnSubmit)}>
@@ -71,9 +78,14 @@ function SettingsForm() {
                   type='text'
                   placeholder='ex. Mindhub'
                   {...register('companyName', {
+                    required: 'Fill in',
                     minLength: {
                       value: 5,
                       message: 'Minimum 5 characters',
+                    },
+                    maxLength: {
+                      value: 25,
+                      message: 'Maximum 25 characters',
                     },
                     validate: (value) =>
                       /^[^\d@#!$%^*()_=-]*$/g.test(value) ||
@@ -165,9 +177,12 @@ function SettingsForm() {
         </div>
 
         <div className={styles.buttonsContainer}>
-          <Button style='outline' handleClick={handleClose}>
-            Cancel
-          </Button>
+          {!smallScreen && (
+            <Button style='outline' handleClick={handleClose}>
+              Cancel
+            </Button>
+          )}
+
           <Button>{isUpdating ? <MiniSpinner /> : 'Save Changes'}</Button>
         </div>
       </form>

@@ -8,12 +8,15 @@ import useGetFeedbacks from '../../../hooks/feedbacks/useGetFeedbacks';
 import { useDispatch, useSelector } from 'react-redux';
 import { setValue } from '../../../slices/sortSlice';
 import { getFeedbacksByFilter } from '../../../utilities/getFeedbacksByFilter';
+import { States } from '../../../types/types';
+import useResponsiveDesign from '../../../hooks/other/useResponsiveDesign';
 
 function FeedbacksHeader() {
   const { id } = useParams();
   const [sort, setSort] = useState('Most votes');
   const { getFeedbacks } = useGetFeedbacks();
-  const filter = useSelector((state) => state.sortBy.filter);
+  const filter = useSelector((state: States) => state.sortBy.filter);
+  const { smallScreen } = useResponsiveDesign();
 
   const dispatch = useDispatch();
   dispatch(setValue(sort));
@@ -48,18 +51,14 @@ function FeedbacksHeader() {
           <Select
             value={sort}
             setValue={setSort}
-            options={[
-              'Most votes',
-              'Least votes',
-              // 'Most Comments',
-              // 'Least Comments',
-            ]}
+            options={['Most votes', 'Least votes']}
           />
         </div>
       </div>
 
       <Button path={`/feedback/form?company=${id}`}>
-        <FaPlus style={{ fontSize: '1.2rem' }} /> Add Feedback
+        <FaPlus style={{ fontSize: '1.2rem' }} />{' '}
+        {!smallScreen && 'Add Feedback'}
       </Button>
     </div>
   );

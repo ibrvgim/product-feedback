@@ -3,3 +3,12 @@
   padding: 8rem 0;
   margin: 0 auto;
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 1150px = 71.875em */
+@media only screen and (max-width: 71.875em) {
+  .container {
+    width: 90%;
+  }
+}

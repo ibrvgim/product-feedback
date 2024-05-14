@@ -35,3 +35,17 @@
 .container .invalidInput {
   border: 2px solid var(--color-red);
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 530px = 33.125em */
+@media only screen and (max-width: 33.125em) {
+  .container {
+    margin-top: 2rem;
+    padding: 0;
+  }
+
+  .container textarea {
+    border-radius: 0.5rem;
+  }
+}

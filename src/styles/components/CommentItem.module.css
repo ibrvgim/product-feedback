@@ -72,3 +72,29 @@
   padding: 0.05rem 1rem;
   border-radius: 0.5rem;
 }
+
+/* RESPONSIVE DESIGN */
+
+/*670px = 41.875em */
+@media only screen and (max-width: 41.875em) {
+  .userText {
+    margin-right: -7rem;
+  }
+}
+
+/* 530px = 33.125em */
+
+@media only screen and (max-width: 33.125em) {
+  .userImage {
+    height: 3.5rem;
+  }
+
+  .userText {
+    margin-right: 0;
+  }
+
+  .replyButton {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}

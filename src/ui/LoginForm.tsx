@@ -63,6 +63,7 @@ function LoginForm() {
                       /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value) ||
                       'Invalid e-mail address',
                   })}
+                  defaultValue='mindhub@company.com'
                 />
               </div>
             </div>
@@ -92,6 +93,7 @@ function LoginForm() {
                     message: 'Minimum 8 characters',
                   },
                 })}
+                defaultValue='mindhub1703'
               />
             </div>
           </div>

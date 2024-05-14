@@ -104,3 +104,49 @@
 .emailLabel {
   opacity: 0.5;
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 970px  = 60.625eem*/
+@media only screen and (max-width: 60.625em) {
+  .container {
+    width: 85%;
+    margin-top: 6rem;
+  }
+}
+
+/* 795px  = 49.7em*/
+@media only screen and (max-width: 49.7em) {
+  .container {
+    min-height: 0;
+    padding: 4rem 6rem;
+    margin-top: 3rem;
+  }
+
+  .image {
+    display: none;
+  }
+
+  .inputsBox {
+    gap: 1.5rem;
+  }
+
+  .inputContainer label {
+    font-size: 1.1rem;
+  }
+}
+
+/* 670px = 41.875em */
+@media only screen and (max-width: 41.875em) {
+  .inputsBox {
+    display: block;
+  }
+
+  .heading h1 {
+    display: none;
+  }
+
+  .inputContainer {
+    margin-top: -1rem;
+  }
+}

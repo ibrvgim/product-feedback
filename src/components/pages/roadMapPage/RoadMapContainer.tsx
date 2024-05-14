@@ -5,21 +5,14 @@ import useGetFeedbacks from '../../../hooks/feedbacks/useGetFeedbacks';
 import FullSpinnerPage from '../../../pages/FullSpinnerPage';
 import { getAllFeedbacks } from '../../../utilities/getAllFeedbacks';
 import { getFeedbacksByCategory } from '../../../utilities/getFeedbacksByCategory';
-
-interface ItemType {
-  id?: string;
-  title?: string;
-  category?: string;
-  description?: string;
-  comments?: [];
-  status?: string;
-}
+import { FeedbackObject } from '../../../types/types';
 
 function RoadMapContainer() {
   const { roadID } = useParams();
   const { isPending, getFeedbacks } = useGetFeedbacks();
   if (!roadID || !getFeedbacks) return;
-  const allFeedbacks = getAllFeedbacks(roadID, getFeedbacks);
+  const allFeedbacks: FeedbackObject[] =
+    getAllFeedbacks(roadID, getFeedbacks) || [];
 
   const plannedCategory = getFeedbacksByCategory('planned', allFeedbacks);
   const progressCategory = getFeedbacksByCategory(
@@ -41,7 +34,7 @@ function RoadMapContainer() {
         </div>
 
         <div className={styles.cardsContainer}>
-          {plannedCategory?.map((item: ItemType) => (
+          {plannedCategory?.map((item) => (
             <RoadMapItem color='orange' key={item.id} item={item} />
           ))}
         </div>
@@ -56,7 +49,7 @@ function RoadMapContainer() {
         </div>
 
         <div className={styles.cardsContainer}>
-          {progressCategory?.map((item: ItemType) => (
+          {progressCategory?.map((item) => (
             <RoadMapItem color='purple' key={item.id} item={item} />
           ))}
         </div>
@@ -71,7 +64,7 @@ function RoadMapContainer() {
         </div>
 
         <div className={styles.cardsContainer}>
-          {releasedCategory?.map((item: ItemType) => (
+          {releasedCategory?.map((item) => (
             <RoadMapItem color='cyan' key={item.id} item={item} />
           ))}
         </div>

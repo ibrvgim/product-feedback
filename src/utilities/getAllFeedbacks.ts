@@ -1,16 +1,10 @@
-interface FeedbackItem {
-  company_id: string;
-  feedbacks: {
-    feedbacks: [];
-  };
-}
+import { FeedbacksRoot } from '../types/types';
 
-export function getAllFeedbacks(id: string, getFeedbacks: FeedbackItem[]) {
-  if (!id || !getFeedbacks) return;
-  const getID = id?.slice(-36);
+export function getAllFeedbacks(id: string, getFeedbacks: FeedbacksRoot[]) {
+  const getID = id.slice(-36);
 
-  const allFeedbacks = getFeedbacks?.find((item) => item.company_id === getID)
+  const allFeedbacks = getFeedbacks.find((item) => item.company_id === getID)
     ?.feedbacks.feedbacks;
 
-  return allFeedbacks || [];
+  return allFeedbacks;
 }

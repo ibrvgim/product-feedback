@@ -63,6 +63,10 @@ function RegistrationForm() {
                       value: 5,
                       message: 'Minimum 5 characters',
                     },
+                    maxLength: {
+                      value: 25,
+                      message: 'Maximum 25 characters',
+                    },
                     validate: (value) =>
                       /^[^\d@#!$%^*()_=-]*$/g.test(value) === true ||
                       'Symbols and numbers are not allowed',

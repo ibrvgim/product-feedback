@@ -13,3 +13,20 @@
   align-items: center;
   gap: 2rem;
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 670px  = 60.625em*/
+@media only screen and (max-width: 41.875em) {
+  .registerButton {
+    display: none;
+  }
+}
+
+/* 530px  = 33.125em*/
+@media only screen and (max-width: 33.125em) {
+  .myCompanyButton > button {
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+  }
+}

@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 4rem;
 }
 
 .logo h1 {
@@ -115,4 +116,40 @@
 .socialMediaIcon:hover {
   color: var(--color-violet-400);
   cursor: pointer;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 1150px = 71.875em */
+@media only screen and (max-width: 71.875em) {
+  .footer {
+    padding: 4rem 4rem;
+  }
+
+  .description {
+    font-size: 1.4rem;
+  }
+}
+
+/* 970px  = 60.625eem*/
+@media only screen and (max-width: 60.625em) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .newsletterContainer {
+    align-self: flex-end;
+  }
+
+  .description {
+    width: 50%;
+  }
+}
+
+/* 670px  = 60.625eem*/
+@media only screen and (max-width: 41.875em) {
+  .description {
+    width: 90%;
+  }
 }

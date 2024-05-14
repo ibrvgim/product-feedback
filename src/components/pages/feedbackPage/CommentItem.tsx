@@ -6,17 +6,11 @@ import FullSpinnerPage from '../../../pages/FullSpinnerPage';
 import useGetFeedbacks from '../../../hooks/feedbacks/useGetFeedbacks';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { getAllFeedbacks } from '../../../utilities/getAllFeedbacks';
+import { Comments, FeedbackObject } from '../../../types/types';
+import useResponsiveDesign from '../../../hooks/other/useResponsiveDesign';
 
 interface Props {
-  item: {
-    id: number | string;
-    content: string;
-    user: {
-      image: string;
-      name: string;
-      username: string;
-    };
-  };
+  item: Comments;
 }
 
 function CommentItem({ item }: Props) {
@@ -27,12 +21,14 @@ function CommentItem({ item }: Props) {
   const [searchParams] = useSearchParams();
   const companyID = searchParams.get('company');
   const { feedbackID } = useParams();
+  const { smallScreen } = useResponsiveDesign();
 
   if (!companyID || !getFeedbacks) return;
 
-  const allFeedbacks = getAllFeedbacks(companyID, getFeedbacks);
+  const allFeedbacks: FeedbackObject[] =
+    getAllFeedbacks(companyID, getFeedbacks) || [];
   const getFeedbackItem = allFeedbacks?.find(
-    (item) => item?.id === Number(feedbackID)
+    (item) => item.id === Number(feedbackID)
   );
 
   const isAdmin =
@@ -42,6 +38,17 @@ function CommentItem({ item }: Props) {
   function toggleReply() {
     setReply((reply) => !reply);
   }
+
+  const replyButton = (
+    <>
+      {getFeedbackItem?.status.toLowerCase() !== 'released' &&
+        getFeedbackItem?.status.toLowerCase() !== 'in - progress' && (
+          <button className={styles.replyButton} onClick={toggleReply}>
+            Reply
+          </button>
+        )}
+    </>
+  );
 
   if (isPending) return <FullSpinnerPage />;
   return (
@@ -62,13 +69,11 @@ function CommentItem({ item }: Props) {
           </p>
           <p className={styles.userText}>{content}</p>
         </div>
-        {getFeedbackItem?.status.toLowerCase() !== 'released' &&
-          getFeedbackItem?.status.toLowerCase() !== 'in - progress' && (
-            <button className={styles.replyButton} onClick={toggleReply}>
-              Reply
-            </button>
-          )}
+
+        {!smallScreen && replyButton}
       </div>
+      {smallScreen && replyButton}
+
       {reply && <ReplyComment id={id} toggleReply={toggleReply} />}
     </div>
   );

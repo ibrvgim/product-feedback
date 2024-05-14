@@ -122,3 +122,73 @@
   padding: 0.1rem 1rem;
   border-radius: 1rem;
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 1150px = 71.875em */
+@media only screen and (max-width: 71.875em) {
+  .container {
+    width: 85%;
+    margin-top: 6rem;
+  }
+
+  .categoryContainer {
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+
+    flex-direction: row;
+
+    margin-top: 2rem;
+    padding: 2rem 3rem;
+  }
+
+  .categoryContainer .categoryButton {
+    flex: 1;
+    padding: 0.4rem 1rem;
+  }
+}
+
+/*670px = 41.875em */
+@media only screen and (max-width: 41.875em) {
+  .feedbackContent > div > p {
+    font-size: 2rem;
+  }
+
+  .feedbackContent > div > button {
+    display: none;
+  }
+
+  .categoryContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 530px = 33.125em */
+
+@media only screen and (max-width: 33.125em) {
+  .feedbackContent > div > p {
+    font-size: 1.9rem;
+  }
+
+  .voteContainer {
+    display: none;
+  }
+
+  .feedbackContent > p {
+    font-size: 1.5rem;
+  }
+
+  .feedbackContent > div {
+    padding-bottom: 2rem;
+  }
+
+  .commentsContainer,
+  .addComments,
+  .feedbackContent {
+    border-radius: 0.8rem;
+    padding: 3.5rem 3rem;
+  }
+}

@@ -6,6 +6,7 @@ interface Props {
   pagesNumber: number;
   handleNextPage: () => void;
   handlePreviousPage: () => void;
+  setPagination: (item: number) => void;
 }
 function Pagination({
   setPagination,

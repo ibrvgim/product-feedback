@@ -91,3 +91,45 @@
 .formContainer .invalidInput {
   border: 1.5px solid var(--color-red);
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 970px = 60.625em */
+@media only screen and (max-width: 60.625em) {
+  .formContainer {
+    width: 70%;
+  }
+
+  .goBackContainer {
+    margin-left: 10rem;
+  }
+}
+
+/*795px = 49.7em */
+@media only screen and (max-width: 49.7em) {
+  .formContainer {
+    width: 80%;
+  }
+
+  .goBackContainer {
+    margin-left: 5rem;
+  }
+}
+
+/*  530px = 33.125em */
+@media only screen and (max-width: 33.125em) {
+  .formContainer {
+    width: 90%;
+    margin-top: 8rem;
+  }
+
+  .goBackContainer,
+  .formIcon {
+    display: none;
+  }
+
+  .formContainer h1 {
+    margin-top: 0;
+    font-size: 2rem;
+  }
+}

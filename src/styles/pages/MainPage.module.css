@@ -4,3 +4,12 @@
   grid-template-columns: 26rem 1fr;
   gap: 4rem;
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 970px  = 60.625eem*/
+@media only screen and (max-width: 60.625em) {
+  .container {
+    display: block;
+  }
+}

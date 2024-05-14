@@ -11,27 +11,33 @@ import { useState } from 'react';
 import { ITEM_PER_PAGE } from '../../../constants/constants';
 import { useSelector } from 'react-redux';
 import { getFeedbacksByFilter } from '../../../utilities/getFeedbacksByFilter';
-import { FeedbackObject } from '../../../types/types';
+import { FeedbackObject, States } from '../../../types/types';
+import useResponsiveDesign from '../../../hooks/other/useResponsiveDesign';
 
 function FeedbacksContainer() {
   const [pagination, setPagination] = useState(1);
   const { isPending } = useGetCompany();
   const { isPending: isGettingFeedback, getFeedbacks } = useGetFeedbacks();
   const { id } = useParams();
-  const sortBy = useSelector((state) => state.sortBy.value);
-  const filter = useSelector((state) => state.sortBy.filter);
+  const sortBy = useSelector((state: States) => state.sortBy.value);
+  const filter = useSelector((state: States) => state.sortBy.filter);
+  const { smallScreen } = useResponsiveDesign();
 
   if (!id || !getFeedbacks) return;
   const allFeedbacks = getFeedbacksByFilter(id, getFeedbacks, filter) || [];
 
-  let managePaginationMethod = allFeedbacks
-    ?.sort((a, b) => Number(b.upvotes) - Number(a.upvotes))
-    .slice((pagination - 1) * ITEM_PER_PAGE, pagination * ITEM_PER_PAGE);
+  let managePaginationMethod = smallScreen
+    ? allFeedbacks?.sort((a, b) => Number(b.upvotes) - Number(a.upvotes))
+    : allFeedbacks
+        ?.sort((a, b) => Number(b.upvotes) - Number(a.upvotes))
+        .slice((pagination - 1) * ITEM_PER_PAGE, pagination * ITEM_PER_PAGE);
 
   if (sortBy.toLowerCase() === 'least votes') {
-    managePaginationMethod = allFeedbacks
-      ?.sort((a, b) => Number(a.upvotes) - Number(b.upvotes))
-      .slice((pagination - 1) * ITEM_PER_PAGE, pagination * ITEM_PER_PAGE);
+    managePaginationMethod = smallScreen
+      ? allFeedbacks?.sort((a, b) => Number(a.upvotes) - Number(b.upvotes))
+      : allFeedbacks
+          ?.sort((a, b) => Number(a.upvotes) - Number(b.upvotes))
+          .slice((pagination - 1) * ITEM_PER_PAGE, pagination * ITEM_PER_PAGE);
   }
 
   const pagesNumber = Math.ceil(allFeedbacks?.length / ITEM_PER_PAGE);
@@ -67,7 +73,7 @@ function FeedbacksContainer() {
             />
           ))}
 
-          {allFeedbacks.length > ITEM_PER_PAGE && (
+          {allFeedbacks.length > ITEM_PER_PAGE && !smallScreen && (
             <div className={styles.paginationContainer}>
               <Pagination
                 pagesNumber={pagesNumber}

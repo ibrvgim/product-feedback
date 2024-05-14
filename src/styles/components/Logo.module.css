@@ -22,3 +22,16 @@
   background-color: var(--color-violet-500);
   color: #fff;
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 530px  = 33.125em*/
+@media only screen and (max-width: 33.125em) {
+  .logo h1 {
+    font-size: 2.2rem;
+  }
+
+  .logo span {
+    font-size: 2rem;
+  }
+}

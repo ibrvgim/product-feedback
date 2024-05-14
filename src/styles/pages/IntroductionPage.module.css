@@ -7,7 +7,7 @@
 .heading {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 3rem;
   margin: 0 auto;
   padding: 10rem 0 4rem 0;
 }
@@ -106,17 +106,13 @@
   line-height: 1.7;
 }
 
-.howWorks .howWorksItem:not(:last-child) {
-  margin-bottom: 2.5rem;
-}
-
 .howWorksIList {
   display: flex;
   gap: 5rem;
 }
 
 .howWorksItem {
-  height: 30rem;
+  min-height: 30rem;
   width: 50rem;
   background-color: var(--color-blue-secondary);
   border-radius: 2rem;
@@ -147,4 +143,88 @@
 .howWorksItem a:hover,
 .howWorksItem a:active {
   color: var(--color-violet-800);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 1150px = 71.875em */
+@media only screen and (max-width: 71.875em) {
+  .section {
+    padding: 12rem 0;
+  }
+
+  .image {
+    display: none;
+  }
+
+  .heading {
+    width: 80%;
+    margin: 0;
+  }
+}
+
+/* 970px  = 60.625eem*/
+@media only screen and (max-width: 60.625em) {
+  .searchCompany input {
+    min-width: 70%;
+  }
+
+  .stepsContainer {
+    border-radius: 1.5rem;
+  }
+
+  .stepsContainer > div {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stepsContainer > div > div {
+    width: 80%;
+  }
+
+  .stepsContainer > div > div:hover {
+    transform: none;
+  }
+
+  .howWorksIList {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .howWorksItem {
+    width: 80%;
+  }
+}
+
+/* 670px  = 60.625eem*/
+@media only screen and (max-width: 41.875em) {
+  .heading {
+    margin: 0 auto;
+  }
+}
+
+/* 530px  = 33.125em*/
+@media only screen and (max-width: 33.125em) {
+  .heading {
+    margin: 0 2rem;
+  }
+
+  .heading h1 {
+    font-size: 3.4rem;
+  }
+
+  .heading p {
+    font-size: 1.5rem;
+  }
+
+  .stepsContainer {
+    padding: 4rem 1.5rem 8rem 1.5rem;
+    margin-top: 8rem;
+  }
+
+  .stepsContainer h1,
+  .howWorks h1 {
+    font-size: 3.4rem;
+  }
 }

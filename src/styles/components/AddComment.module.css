@@ -49,3 +49,17 @@
 .submitContainer > p span {
   font-weight: 400;
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 530px = 33.125em */
+@media only screen and (max-width: 33.125em) {
+  .container h3 {
+    display: none;
+  }
+
+  .container textarea {
+    font-size: 1.4rem;
+    border-radius: 0.5rem;
+  }
+}

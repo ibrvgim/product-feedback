@@ -55,3 +55,21 @@
 .container:hover .feedbackDescription h3 {
   color: var(--color-violet-400);
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 530px = 33.125em */
+
+@media only screen and (max-width: 33.125em) {
+  .feedbackComments {
+    display: none;
+  }
+
+  .container > button {
+    display: none;
+  }
+
+  .feedbackDescription h3 {
+    font-size: 1.8rem;
+  }
+}

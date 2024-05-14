@@ -10,6 +10,7 @@ import { getAllFeedbacks } from '../utilities/getAllFeedbacks';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import useCreateFeedback from '../hooks/feedbacks/useCreateFeedback';
 import MiniSpinner from '../components/common/MiniSpinner';
+import { FeedbackObject } from '../types/types';
 
 interface DataType {
   title?: string;
@@ -28,7 +29,8 @@ function FeedbackForm() {
   const id = seacrhParams?.get('company');
   if (!id || !getFeedbacks) return;
 
-  const allFeedbacks = getAllFeedbacks(id, getFeedbacks) || [];
+  const allFeedbacks: FeedbackObject[] =
+    getAllFeedbacks(id, getFeedbacks) || [];
 
   const companyID = id?.slice(-36);
 
@@ -45,11 +47,11 @@ function FeedbackForm() {
         feedbackItem: [
           {
             id: Date.now(),
-            title,
+            title: title || '',
             category: value,
             upvotes: 0,
             status: 'suggestion',
-            description,
+            description: description || '',
             comments: [],
           },
           ...allFeedbacks,
@@ -91,6 +93,10 @@ function FeedbackForm() {
                   minLength: {
                     value: 10,
                     message: 'Minimum 10 characters',
+                  },
+                  maxLength: {
+                    value: 30,
+                    message: 'Maximum 30 characters',
                   },
                 })}
               />

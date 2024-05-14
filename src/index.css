@@ -141,3 +141,12 @@ a:active {
   color: inherit;
   text-decoration: none;
 }
+
+/* RESPONSIVE DESIGN */
+
+/* 1280px = 80em */
+@media only screen and (max-width: 80em) {
+  html {
+    font-size: 56.25%;
+  }
+}

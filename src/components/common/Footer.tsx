@@ -5,7 +5,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <div>
+      <div className={styles.leftConatiner}>
         <div className={styles.logo}>
           <h1>
             Mind<span>hub</span>
