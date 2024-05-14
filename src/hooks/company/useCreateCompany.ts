@@ -16,6 +16,7 @@ function useCreateCompany() {
     mutationFn: createCompanyAPI,
 
     onSuccess: (data) => {
+      // @ts-expect-error complicated type
       const { id, companyId, companyName } = handleID(data);
 
       dispatch(closeAllWindows());

@@ -7,7 +7,7 @@ import {
   openRegisterWindow,
 } from '../slices/modalWindowSlice';
 import { useForm } from 'react-hook-form';
-import { CompanyFormData } from '../types/types';
+import { FormData } from '../types/types';
 import useSigninCompany from '../hooks/company/useSigninCompany.ts';
 import MiniSpinner from '../components/common/MiniSpinner';
 
@@ -23,7 +23,7 @@ function LoginForm() {
     dispatch(openRegisterWindow());
   }
 
-  function handleOnSubmit(data: CompanyFormData) {
+  function handleOnSubmit(data: FormData) {
     const { email, password } = data;
     if (email && password) loginCompany({ email, password });
     if (isLogining) dispatch(closeAllWindows());

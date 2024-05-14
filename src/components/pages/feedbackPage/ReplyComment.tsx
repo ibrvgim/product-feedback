@@ -83,6 +83,8 @@ function ReplyComment({
       return;
     } else setError('');
 
+    if (!currentComment) return;
+
     const newComment: Comments = {
       ...currentComment,
       replies: [
@@ -105,7 +107,7 @@ function ReplyComment({
     const commentItem = getAllComments?.slice();
     commentItem?.splice(findIndexComment, 1, newComment);
 
-    if (!commentItem) return;
+    if (!commentItem || !currentFeedback) return;
 
     const newFeedback: FeedbackObject = {
       ...currentFeedback,

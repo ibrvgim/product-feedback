@@ -15,6 +15,7 @@ function useSigninCompany() {
     mutationFn: loginMyCompany,
 
     onSuccess: (data) => {
+      // @ts-expect-error complicated type
       const { id } = handleID(data);
 
       dispatch(closeAllWindows());

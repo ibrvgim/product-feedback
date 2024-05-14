@@ -8,34 +8,34 @@ export interface DarkMode {
   handleTheme?: () => void;
 }
 
-export interface CompanyData {
-  email: string;
-  password: string;
-}
+// export interface CompanyData {
+//   email: string;
+//   password: string;
+// }
 
-export interface CreateCompany {
-  email: string;
-  password: string;
-  companyName: string;
-}
+// export interface CreateCompany {
+//   email: string;
+//   password: string;
+//   companyName: string;
+// }
 
-export interface CompanyFormData {
-  companyName?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-}
+// export interface CompanyFormData {
+//   companyName?: string;
+//   email?: string;
+//   password?: string;
+//   confirmPassword?: string;
+// }
 
 export interface InitialFeedbackData {
   companyId: string;
   companyName: string;
 }
 
-export interface CompanyData {
-  id: string | number;
-  companyId: string;
-  companyName: string;
-}
+// export interface CompanyData {
+//   id: string | number;
+//   companyId: string;
+//   companyName: string;
+// }
 
 // REACT REDUX STRUCTURE
 export interface States {
@@ -125,4 +125,35 @@ export interface Reply {
   content: string;
   replyingTo: string;
   user: UserInfo;
+}
+
+// COMPANY STRUCTURE
+
+export interface CompanyData {
+  email: string;
+  password: string;
+  companyName?: string;
+}
+
+export interface CompanyCreationData {
+  id: string | number;
+  companyId: string;
+  companyName: string;
+}
+
+export interface FormData {
+  email?: string;
+  password?: string;
+}
+
+export interface RegistartionFormData {
+  email?: string;
+  password?: string;
+  companyName?: string;
+}
+
+export interface UpdateData {
+  email?: string;
+  password?: string;
+  companyName?: string;
 }

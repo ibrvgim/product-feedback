@@ -17,6 +17,7 @@ function useUpdateCompany() {
     mutationFn: updateCompany,
 
     onSuccess: (data) => {
+      // @ts-expect-error complicated type
       const { companyId, companyName, id } = handleID(data);
 
       dispatch(closeAllWindows());

@@ -7,7 +7,7 @@ import { closeAllWindows, openLoginWindow } from '../slices/modalWindowSlice';
 import { useForm } from 'react-hook-form';
 import useCreateCompany from '../hooks/company/useCreateCompany';
 import MiniSpinner from '../components/common/MiniSpinner';
-import { CompanyFormData } from '../types/types';
+import { RegistartionFormData } from '../types/types';
 
 function RegistrationForm() {
   const { isCreating, createCompany } = useCreateCompany();
@@ -21,7 +21,7 @@ function RegistrationForm() {
     dispatch(openLoginWindow());
   }
 
-  function handleOnSubmit(data: CompanyFormData) {
+  function handleOnSubmit(data: RegistartionFormData) {
     const { email, password, companyName } = data;
     if (email && password && companyName)
       createCompany({ email, password, companyName });

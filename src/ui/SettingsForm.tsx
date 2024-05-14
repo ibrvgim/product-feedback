@@ -11,11 +11,7 @@ import useGetCompany from '../hooks/company/useGetCompany';
 import FullSpinnerPage from '../pages/FullSpinnerPage';
 import toast from 'react-hot-toast';
 import useResponsiveDesign from '../hooks/other/useResponsiveDesign';
-
-interface FormData {
-  password?: string;
-  companyName?: string;
-}
+import { UpdateData } from '../types/types';
 
 function SettingsForm() {
   const { isPending, companyData } = useGetCompany();
@@ -32,8 +28,9 @@ function SettingsForm() {
     dispatch(closeAllWindows());
   }
 
-  function handleOnSubmit(data: FormData) {
+  function handleOnSubmit(data: UpdateData) {
     const { password, companyName } = data;
+
     if (password || companyData?.user_metadata.companyName !== data.companyName)
       updateCompanyData({ password, companyName });
     else toast.error('No changes detected.');

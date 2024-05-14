@@ -16,8 +16,8 @@ import toast from 'react-hot-toast';
 import { FeedbackObject } from '../types/types';
 
 interface Data {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
 }
 
 function EditForm() {
@@ -29,7 +29,9 @@ function EditForm() {
   const { feedbackID } = useParams();
   const companyID = searchParams.get('company')?.slice(-36);
   const { isUpdating, updateFeedback } = useUpdateFeedback();
-  // if (!companyID || !getFeedbacks) return;
+  const [value, setValue] = useState(formatString('Feature'));
+
+  if (!companyID || !getFeedbacks) return;
 
   const allFeedbacks: FeedbackObject[] =
     getAllFeedbacks(companyID, getFeedbacks) || [];
@@ -38,28 +40,30 @@ function EditForm() {
     (item) => Number(item.id) === Number(feedbackID)
   );
 
-  // if (!currentFeedback) return;
-  const { title, category, description } = currentFeedback;
-  const [value, setValue] = useState(formatString(category));
+  if (!currentFeedback) return;
+
+  const { title, description } = currentFeedback;
 
   function handleOnSubmit(data: Data) {
     const { title, description } = data;
     if (!companyID) return;
 
     const isEditted =
-      currentFeedback?.title.toLowerCase() !== title.toLowerCase() ||
+      currentFeedback?.title.toLowerCase() !== title?.toLowerCase() ||
       currentFeedback?.category.toLowerCase() !== value?.toLowerCase() ||
-      currentFeedback?.description.toLowerCase() !== description.toLowerCase();
+      currentFeedback?.description.toLowerCase() !== description?.toLowerCase();
 
     const feedbackIndex = allFeedbacks?.findIndex(
       (item) => Number(item.id) === Number(feedbackID)
     );
 
-    const newFeedbacks = allFeedbacks?.slice();
+    if (!title || !description || !value || !currentFeedback) return;
+
+    const newFeedbacks: FeedbackObject[] = allFeedbacks?.slice();
     newFeedbacks?.splice(feedbackIndex, 1, {
       ...currentFeedback,
-      title,
-      description,
+      title: title,
+      description: description,
       category: value,
     });
 

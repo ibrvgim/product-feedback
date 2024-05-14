@@ -1,11 +1,11 @@
-import { CompanyData, CompanyFormData, CreateCompany } from '../../types/types';
+import { CompanyData, UpdateData } from '../../types/types';
 import { supabase } from '../other/supabase';
 
 export async function createCompany({
   email,
   password,
   companyName,
-}: CreateCompany) {
+}: CompanyData) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -39,10 +39,7 @@ export async function getCompany() {
   return company;
 }
 
-export async function updateCompany({
-  password,
-  companyName,
-}: CompanyFormData) {
+export async function updateCompany({ password, companyName }: UpdateData) {
   if (!password) {
     const { data, error } = await supabase.auth.updateUser({
       data: {
