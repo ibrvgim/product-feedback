@@ -1,11 +1,11 @@
 .container {
-  width: 70%;
-  min-height: 75%;
+  max-width: 70%;
+  max-height: 75%;
   background-color: var(--color-grey-900);
   color: var(--color-grey-100);
   box-shadow: var(--shadow-lg);
   border-radius: 2rem;
-  padding: 6rem 8rem;
+  padding: 12rem 8rem;
   border: 2px solid var(--color-violet-400);
 
   display: flex;
@@ -27,7 +27,7 @@
 }
 
 .heading img {
-  height: 23rem;
+  height: 20rem;
   margin-top: 4rem;
 }
 
@@ -103,7 +103,9 @@
 
 .noAccount {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  row-gap: 2rem;
 }
 
 .noAccount p {
@@ -124,4 +126,49 @@
 
 .noAccount button:hover {
   color: var(--color-violet-700);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 1150px = 71.875em */
+@media only screen and (max-width: 71.875em) {
+  .container {
+    flex-direction: column;
+    padding: 8rem;
+  }
+
+  .heading {
+    flex: 0;
+    margin-bottom: 2rem;
+  }
+
+  .heading img {
+    display: none;
+  }
+}
+
+/* 795px = 49.7em */
+@media only screen and (max-width: 49.7em) {
+  .container {
+    padding: 8rem 6rem;
+  }
+
+  .heading h1 {
+    font-size: 2.6rem;
+  }
+
+  .noAccount {
+    margin-bottom: 2rem;
+  }
+
+  .cancelButton {
+    display: none;
+  }
+}
+
+/* 530px = 33.125em */
+@media only screen and (max-width: 33.125em) {
+  .heading h1 {
+    font-size: 2.2rem;
+  }
 }

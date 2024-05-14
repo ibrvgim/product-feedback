@@ -18,7 +18,7 @@ Welcome to MINDHUB! This platform is designed to provide companies with the oppo
 - React Hook Form - https://react-hook-form.com/
 - React Hot Toast - https://react-hot-toast.com/
 - React Icons - https://react-icons.github.io/react-icons/
-- React Responsive: https://contra.io/react-responsive/
+- React Responsive - https://contra.io/react-responsive/
 
 For the server part SUPABASE was used: https://supabase.com/
 

@@ -1,6 +1,6 @@
 .container {
-  width: 70%;
-  min-height: 75%;
+  max-width: 70%;
+  min-height: 55%;
   background-color: var(--color-grey-900);
   color: var(--color-grey-100);
   box-shadow: var(--shadow-lg);
@@ -106,7 +106,10 @@
 
 .accountExist {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  row-gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .accountExist p {
@@ -127,4 +130,54 @@
 
 .accountExist button:hover {
   color: var(--color-violet-700);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* 970px = 60.625em */
+@media only screen and (max-width: 60.625em) {
+  .heading {
+    margin-bottom: 4rem;
+  }
+
+  .heading img {
+    display: none;
+  }
+
+  .inputsBox {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* 795px = 49.7em */
+@media only screen and (max-width: 49.7em) {
+  .container {
+    padding: 6rem 4rem;
+    margin-top: 16rem;
+  }
+
+  .heading h1 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .cancelButton {
+    display: none;
+  }
+
+  .inputContainer input {
+    font-size: 1.4rem;
+  }
+
+  .inputContainer input::placeholder {
+    font-size: 1.3rem;
+  }
+}
+
+/* 530px = 33.125em */
+@media only screen and (max-width: 33.125em) {
+  .heading h1 {
+    font-size: 2.2rem;
+  }
 }

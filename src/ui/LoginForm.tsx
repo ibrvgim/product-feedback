@@ -106,12 +106,15 @@ function LoginForm() {
           </div>
 
           <div className={styles.buttonsContainer}>
-            <Button
-              style='outline'
-              handleClick={() => dispatch(closeAllWindows())}
-            >
-              Cancel
-            </Button>
+            <div className={styles.cancelButton}>
+              <Button
+                style='outline'
+                handleClick={() => dispatch(closeAllWindows())}
+              >
+                Cancel
+              </Button>
+            </div>
+
             <Button disabled={isLogining}>
               {isLogining ? <MiniSpinner /> : 'Continue'}
             </Button>
