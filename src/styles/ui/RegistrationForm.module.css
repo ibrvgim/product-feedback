@@ -1,11 +1,11 @@
 .container {
-  max-width: 70%;
+  max-width: 80%;
   min-height: 55%;
   background-color: var(--color-grey-900);
   color: var(--color-grey-100);
   box-shadow: var(--shadow-lg);
   border-radius: 2rem;
-  padding: 6rem 8rem;
+  padding: 6rem 6rem;
   border: 2px solid var(--color-violet-400);
 }
 
@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 8rem;
 }
 
 .heading h1 {
@@ -26,7 +27,7 @@
 .inputsBox {
   display: flex;
   align-items: center;
-  gap: 5rem;
+  gap: 1.5rem;
   margin-top: 3rem;
 }
 
