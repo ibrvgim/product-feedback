@@ -3,7 +3,9 @@
 Welcome to MINDHUB! This platform is designed to provide companies with the opportunity to collect user feedbacks about their product.
 
 > [!IMPORTANT]
-> With Responsive Design.
+> Some features are disabled in the Demo version.
+> To fully experience the possibilities, create your own company account without any restrictions.
+> To enter the Demo version, simply go to 'My Company' and click 'Continue'.
 
 ## OVERVIEW
 
