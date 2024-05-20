@@ -31,9 +31,18 @@ function SettingsForm() {
   function handleOnSubmit(data: UpdateData) {
     const { password, companyName } = data;
 
-    if (password || companyData?.user_metadata.companyName !== data.companyName)
+    // false here added to prevent any data altering
+    if (
+      (password ||
+        companyData?.user_metadata.companyName !== data.companyName) &&
+      companyData?.id.slice(-36) !== '1f8fa5fb-9f86-4603-9ce3-504c0d4ee305'
+    )
       updateCompanyData({ password, companyName });
-    else toast.error('No changes detected.');
+    else if (
+      companyData?.id.slice(-36) === '1f8fa5fb-9f86-4603-9ce3-504c0d4ee305'
+    ) {
+      toast.error('Changing demo data is disabled.');
+    } else toast.error('No changes detected. ');
     dispatch(closeAllWindows());
   }
 

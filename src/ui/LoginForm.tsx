@@ -93,7 +93,7 @@ function LoginForm() {
                     message: 'Minimum 8 characters',
                   },
                 })}
-                defaultValue='mindhub1703'
+                defaultValue='mind1703'
               />
             </div>
           </div>
