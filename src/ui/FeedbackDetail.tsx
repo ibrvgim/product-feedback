@@ -14,8 +14,8 @@ import useGetFeedbacks from '../hooks/feedbacks/useGetFeedbacks';
 import FullSpinnerPage from '../pages/FullSpinnerPage';
 import { formatString } from '../utilities/helpers';
 import useGetCompany from '../hooks/company/useGetCompany';
-import useDeleteFeedback from '../hooks/feedbacks/useDeleteFeedback';
-import MiniSpinner from '../components/common/MiniSpinner';
+// import useDeleteFeedback from '../hooks/feedbacks/useDeleteFeedback';
+// import MiniSpinner from '../components/common/MiniSpinner';
 import useUpdateFeedback from '../hooks/feedbacks/useUpdateFeedback';
 import ModalWindow from '../components/common/ModalWindow';
 import EditForm from './EditForm';
@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openEditForm } from '../slices/modalWindowSlice';
 import { FeedbackObject, States } from '../types/types';
 import useResponsiveDesign from '../hooks/other/useResponsiveDesign';
+import toast from 'react-hot-toast';
 
 function FeedbackDetail() {
   const [searchParams] = useSearchParams();
@@ -30,7 +31,7 @@ function FeedbackDetail() {
   const { isPending, getFeedbacks } = useGetFeedbacks();
   const { feedbackID } = useParams();
   const { isAuthenticated, companyData } = useGetCompany();
-  const { isDeleting, deleteFeedback } = useDeleteFeedback();
+  // const { isDeleting, deleteFeedback } = useDeleteFeedback();
   const { isUpdating, updateFeedback } = useUpdateFeedback();
   const editForm = useSelector((state: States) => state.modalWindow.editForm);
   const { smallScreen } = useResponsiveDesign();
@@ -56,11 +57,13 @@ function FeedbackDetail() {
   }: FeedbackObject = getFeedbackItem;
 
   function handleDelete() {
-    const feedbackItem = allFeedbacks?.filter(
-      (item) => item?.id !== getFeedbackItem?.id
-    );
-    if (isAuthenticated && matchPage)
-      deleteFeedback({ companyID, feedbackItem });
+    // const feedbackItem = allFeedbacks?.filter(
+    //   (item) => item?.id !== getFeedbackItem?.id
+    // );
+    if (isAuthenticated && matchPage) {
+      // deleteFeedback({ companyID, feedbackItem });
+      toast.error('Deletion is disabled for security reasons!');
+    }
   }
 
   const matchPage = companyData?.id === companyID;
@@ -103,9 +106,10 @@ function FeedbackDetail() {
                 <Button
                   style='delete'
                   handleClick={handleDelete}
-                  disabled={isDeleting}
+                  // disabled={isDeleting}
                 >
-                  {isDeleting ? <MiniSpinner space={false} /> : <IoTrash />}
+                  {/* {isDeleting ? <MiniSpinner space={false} /> : <IoTrash />} */}
+                  <IoTrash />
                 </Button>
               </div>
             )}
